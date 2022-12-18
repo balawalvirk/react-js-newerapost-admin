@@ -1,0 +1,48 @@
+@font-face {
+    font-family: 'SF UI Text Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF UI Text Regular'), url(../fonts/SFUITextRegular.woff) format('woff');
+}
+@font-face {
+    font-family: 'SF UI Text Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('SF UI Text Bold'), url(../fonts/SFUIText-Bold.woff) format('woff');
+}
+
+
+@font-face {
+    font-family: 'Inter-Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Inter-Regular'), url(../fonts/Inter-Regular.ttf) format('woff');
+}
+
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+input{
+    background: red;
+}
+body{
+
+}
+
+/*::-webkit-scrollbar {*/
+    /*display: none;*/
+/*}*/
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+    transition: background-color 600000s 0s, color 600000s 0s;
+}
+
+input:-webkit-autofill {
+    color: #2a2a2a !important;
+}
