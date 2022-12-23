@@ -140,6 +140,21 @@ const Stats=(props)=>{
                     </Grid>
                 </Paper>
             </Grid>
+            <Grid item xs={4}>
+                <Paper style={{width: "100%", padding: "20px 0px"}}>
+                    <Grid container justifyContent={"center"} alignItems={"center"} direction={"column"}>
+                        <Grid item>
+                            <CustomLabelHeader text={"Organizations"} color={"#1e1e2d"}
+                                               fontWeight={"bold"}/>
+
+                        </Grid>
+                        <Grid item>
+                            <CustomLabelHeader text={data && data.organizationCount} color={"#1e1e2d"}/>
+
+                        </Grid>
+                    </Grid>
+                </Paper>
+            </Grid>
         </Grid>
     )
 }

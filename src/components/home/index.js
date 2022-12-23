@@ -23,6 +23,7 @@ import Events from "../events";
 import Organization from "../organization";
 import Notification from "../notification";
 import {removeAccessToken} from "../../utils";
+import StaticDataEditor from "../static-data-editor";
 
 const Home = () => {
     const location = useLocation().pathname;
@@ -96,6 +97,18 @@ const Home = () => {
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Privacy Policy")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Privacy Policy"?1:0.9}}>
+                        <CustomLabelHeader text={"Privacy Policy"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("About us")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="About us"?1:0.9}}>
+                        <CustomLabelHeader text={"About us"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
                           onClick={handleLogout}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Notifications"?1:0.9}}>
                         <CustomLabelHeader text={"Logout"} color={"white"} fontWeight={"bold"}/>
@@ -143,6 +156,12 @@ const Home = () => {
                     }
                     {
                         tab==="Notifications" && <Notification/>
+                    }
+                    {
+                        tab==="Privacy Policy" && <StaticDataEditor type={"privacy-policy"}/>
+                    }
+                    {
+                        tab==="About us" && <StaticDataEditor type={"about-us"}/>
                     }
                     {/*<Stats/>*/}
                 </Grid>

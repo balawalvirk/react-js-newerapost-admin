@@ -58,8 +58,8 @@ const ListViewer = (props) => {
 
     const ColumnsData = columns.map((column) =>
         <TableCell
-            style={{
-                minWidth: 1,
+            sx={{
+                minWidth: {xs:"100px",md:"150px"},
                 background: "white",
                 color: "black",
                 fontWeight: "bold"

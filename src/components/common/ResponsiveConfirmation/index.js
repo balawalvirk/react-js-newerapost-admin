@@ -13,6 +13,8 @@ import { useTheme } from '@mui/material/styles';
     const theme = useTheme();
     const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
+
+
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -28,6 +30,7 @@ import { useTheme } from '@mui/material/styles';
                 open={open}
                 onClose={handleClose}
                 onBackdropClick="false"
+                maxWidth={"lg"}
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogTitle id="responsive-dialog-title">

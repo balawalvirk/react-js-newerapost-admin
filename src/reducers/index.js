@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
     validateAdmin,getUserStats,getAllUsers,getAllOrganizerPartners,getAllEvents,postOrganization,getAllOrganization,blockUnblock,cancelSubscription,
-    blockUnblockPartner,deleteEvent,sendFirebasePushNotifications
+    blockUnblockPartner,deleteEvent,sendFirebasePushNotifications,postStaticData,getStaticDataByType,getAllEventDetails,postEventDetails
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -372,6 +372,114 @@ export const sendFirebasePushNotificationsSlice = createSlice({
 });
 
 
+export const postStaticDataSlice = createSlice({
+    name: 'postStaticDataSlice',
+    initialState,
+    reducers: {
+        postStaticDataReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [postStaticData.pending]: (state) => {
+            state.loading = true
+        },
+        [postStaticData.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [postStaticData.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const getStaticDataBySlice = createSlice({
+    name: 'getStaticDataBySlice',
+    initialState,
+    reducers: {
+        getStaticDataByTypeReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getStaticDataByType.pending]: (state) => {
+            state.loading = true
+        },
+        [getStaticDataByType.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getStaticDataByType.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const getAllEventDetailsSlice = createSlice({
+    name: 'getAllEventDetailsSlice',
+    initialState,
+    reducers: {
+        getAllEventDetailsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getAllEventDetails.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllEventDetails.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllEventDetails.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const postEventDetailsSlice = createSlice({
+    name: 'postEventDetails',
+    initialState,
+    reducers: {
+        postEventDetailsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [postEventDetails.pending]: (state) => {
+            state.loading = true
+        },
+        [postEventDetails.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [postEventDetails.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -384,6 +492,10 @@ export const {cancelSubscriptionReset} = cancelSubscriptionSlice.actions;
 export const {blockUnblockPartnerReset} = blockUnblockPartnerSlice.actions;
 export const {deleteEventReset} = deleteEventSlice.actions;
 export const {sendFirebasePushNotificationsReset} = sendFirebasePushNotificationsSlice.actions;
+export const {postStaticDataReset} = postStaticDataSlice.actions;
+export const {getStaticDataByTypeReset} = getStaticDataBySlice.actions;
+export const {getAllEventDetailsReset} = getAllEventDetailsSlice.actions;
+export const {postEventDetailsReset} = postEventDetailsSlice.actions;
 
 
 export const validateUserReducer = validateUserSlice.reducer;
@@ -398,3 +510,7 @@ export const cancelSubscriptionReducer = cancelSubscriptionSlice.reducer;
 export const blockUnblockPartnerReducer = blockUnblockPartnerSlice.reducer;
 export const deleteEventReducer = deleteEventSlice.reducer;
 export const sendFirebasePushNotificationsReducer = sendFirebasePushNotificationsSlice.reducer;
+export const postStaticDataReducer = postStaticDataSlice.reducer;
+export const getStaticDataByReducer = getStaticDataBySlice.reducer;
+export const getAllEventDetailsReducer = getAllEventDetailsSlice.reducer;
+export const postEventDetailsReducer = postEventDetailsSlice.reducer;

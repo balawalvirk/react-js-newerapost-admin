@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
-import {blockUnblock, deleteEvent, getAllEvents, getAllUsers} from "../../services";
+import {blockUnblock, deleteEvent, getAllEvents, getAllOrganization, getAllUsers} from "../../services";
 import {
     blockUnblockReset,
     cancelSubscriptionReset,
@@ -16,6 +16,8 @@ import Loader from "../common/Loader";
 import ResponsiveConfirmationDialog from "../common/ResponsiveConfirmation";
 import ListViewer from "../common/ListViewer";
 import Button from "@mui/material/Button/Button";
+import AddOrganization from "../add-organization";
+import AddEvent from "../add-event";
 
 const initialConfirmation = {
     show: false,
@@ -30,10 +32,11 @@ const initialConfirmation = {
 const Events = () => {
     const dispatch = useDispatch()
     const {data, loading, error} = useSelector((state) => state.getAllEventsReducer);
-    const {data:deleteEventData, loading:deleteEventLoading, error:deleteEventError} =
+    const {data: deleteEventData, loading: deleteEventLoading, error: deleteEventError} =
         useSelector((state) => state.deleteEventReducer);
     const [confirmation, setConfirmation] = useState(initialConfirmation);
     const [selectedUser, setSelectedUser] = useState(null);
+    const [count,setCount]=useState(0);
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -54,8 +57,8 @@ const Events = () => {
     }, [data, loading]);
 
 
-    useEffect(()=>{
-        if(deleteEventError){
+    useEffect(() => {
+        if (deleteEventError) {
             setConfirmation({
                 show: true,
                 title: "Error",
@@ -67,26 +70,51 @@ const Events = () => {
                     <Button autoFocus onClick={(e) => {
                         setConfirmation(initialConfirmation)
                     }}>ok</Button>,
-                buttonNo:null
+                buttonNo: null
             });
             dispatch(deleteEventReset())
-        }else if(deleteEventData){
-            if(selectedUser){
-                let parsedData=JSON.parse(JSON.stringify(data));
-                parsedData=parsedData.filter((data,index)=>index!==selectedUser.index);
+        } else if (deleteEventData) {
+            if (selectedUser) {
+                let parsedData = JSON.parse(JSON.stringify(data));
+                parsedData = parsedData.filter((data, index) => index !== selectedUser.index);
                 dispatch(updateEvent(parsedData));
             }
             dispatch(deleteEventReset())
 
         }
-    },[deleteEventData,deleteEventLoading])
+    }, [deleteEventData, deleteEventLoading])
+
+    const refreshData=()=>{
+        dispatch(getAllEvents());
+        handleOnCloseConfirmation(null);
+    }
+
+    const handleOnCloseConfirmation=(e)=>{
+        setConfirmation(initialConfirmation);
+        setCount(count+1);
+    }
 
 
+    const handleAddOrganization=(id)=>{
+        const selectedEventIndex = data.findIndex((d) => (d.id).toString() === id.toString())
+        let event = JSON.parse(JSON.stringify(data[selectedEventIndex]));
 
-    const handleDeleteEvent=(id)=>{
+        setConfirmation({
+            show: true,
+            title: "Update event",
+            text: ``,
+            data: {},
+            isUpdate: false,
+            children:<AddEvent onCloseConfirmation={handleOnCloseConfirmation} refreshData={refreshData} event={event}/>,
+            buttonYes:null,
+            buttonNo:null
+        });
+    }
 
-        const selectedUserIndex=data.findIndex((d)=>(d.id).toString()===id.toString())
-        let selectedUser=JSON.parse(JSON.stringify(data[selectedUserIndex]));
+    const handleDeleteEvent = (id) => {
+
+        const selectedUserIndex = data.findIndex((d) => (d.id).toString() === id.toString())
+        let selectedUser = JSON.parse(JSON.stringify(data[selectedUserIndex]));
 
         setConfirmation({
             show: true,
@@ -98,10 +126,10 @@ const Events = () => {
             buttonYes:
                 <Button autoFocus onClick={(e) => {
                     dispatch(deleteEvent(selectedUser.id));
-                    setSelectedUser({index:selectedUserIndex,user:selectedUser});
+                    setSelectedUser({index: selectedUserIndex, user: selectedUser});
                     setConfirmation(initialConfirmation)
                 }}>ok</Button>,
-            buttonNo:<Button autoFocus onClick={(e) => {
+            buttonNo: <Button autoFocus onClick={(e) => {
                 setConfirmation(initialConfirmation)
             }}>cancel</Button>
         });
@@ -115,12 +143,20 @@ const Events = () => {
         venueName: d.venue && d.venue.name,
         venueType: d.venue && d.venue.categoryTags,
         organizerName: d.organizer && d.organizer.organizerName,
-        startDateTime: d.state && getFormattedDateTime(d.state),
-        endDateTime: d.city && getFormattedDateTime(d.city),
+        startDateTime: d.state && d.city &&
+            <span>
+                <span>{`${getFormattedDateTime(d.state)}`}</span><br/>
+                <span>{`${getFormattedDateTime(d.city)}`}</span>
+            </span>,
+        endDateTime: d.startingTime && d.endingTime && <span>
+                <span>{`${(d.startingTime)}`}</span><br/>
+                <span>{`${(d.endingTime)}`}</span>
+            </span>,
+        edit: <span onClick={(e) => handleAddOrganization(d.id)}><CustomButtonSquareSmall color={"rgb(13 161 81)"}
+                                                                                      text={"Edit"}/></span>,
         delete: <span onClick={(e) => handleDeleteEvent(d.id)}><CustomButtonSquareSmall color={"red"} text={"Delete"}/></span>
 
     }))
-
 
 
     return (
@@ -132,15 +168,17 @@ const Events = () => {
                     title={confirmation.title} text={confirmation.text}
                     buttons={confirmation.buttonYes}
                     otherButton={confirmation.buttonNo}
-                />
+                >
+                    {confirmation.children}
+                </ResponsiveConfirmationDialog>
             }
             {
                 filteredData &&
                 <ListViewer data={filteredData}
                             columns={["No", "Event name", "Venue name", "Type of venue", "Organizer name", "Start date/end date",
-                                "Start time/end time", "Delete"]}
+                                "Start time/end time", "Edit", "Delete"]}
                             keys={["index", "eventName", "venueName", "venueType", "organizerName", "startDateTime", "endDateTime",
-                                "delete",]}
+                                "edit", "delete",]}
                             searchField={"eventName"}/>
             }
         </>

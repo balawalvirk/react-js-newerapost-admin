@@ -85,5 +85,5 @@ export const getFormattedDate=(date)=>{
 
 
 export const getFormattedDateTime=(dateTime)=>{
-    return moment(dateTime).format("MM-DD-yyyy HH:mm:ss")
+    return moment(dateTime).format("MM-DD-yyyy")
 }

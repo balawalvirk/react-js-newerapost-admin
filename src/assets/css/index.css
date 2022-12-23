@@ -46,3 +46,10 @@ input:-webkit-autofill:focus {
 input:-webkit-autofill {
     color: #2a2a2a !important;
 }
+
+.editorClassName{
+    background: #F1F4F3;
+    width:100%;
+    min-height:240px;
+    padding:10px 5px
+}

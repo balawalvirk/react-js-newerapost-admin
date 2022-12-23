@@ -151,6 +151,55 @@ const sendFirebasePushNotifications = createAsyncThunk("sendFirebasePushNotifica
 )
 
 
+const postStaticData = createAsyncThunk("postStaticData", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.post(`${baseUl}/users/static-data`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+const getStaticDataByType = createAsyncThunk("getStaticDataByType", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}/users/static-data/${data}`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+
+const getAllEventDetails = createAsyncThunk("getAllEventDetails", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}/users/event/details/${data}`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+const postEventDetails = createAsyncThunk("postEventDetails", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.put(`${baseUl}event/${data.id}/admin`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
 export {
     validateAdmin,
     getUserStats,
@@ -163,5 +212,9 @@ export {
     cancelSubscription,
     blockUnblockPartner,
     deleteEvent,
-    sendFirebasePushNotifications
+    sendFirebasePushNotifications,
+    postStaticData,
+    getStaticDataByType,
+    getAllEventDetails,
+    postEventDetails
 }
