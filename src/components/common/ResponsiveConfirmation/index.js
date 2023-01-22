@@ -36,7 +36,7 @@ import { useTheme } from '@mui/material/styles';
                 <DialogTitle id="responsive-dialog-title">
                     {props.title}
                 </DialogTitle>
-                <DialogContent style={{minWidth:"320px"}}>
+                <DialogContent style={{minWidth:props.width || "320px"}}>
                     <DialogContentText>
                         {props.text}
                     </DialogContentText>

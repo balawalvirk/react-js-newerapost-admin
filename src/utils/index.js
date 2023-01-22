@@ -69,8 +69,12 @@ export const getToken = () => {
 
 
 export const getAccessToken=()=>{
-    const token=JSON.parse(getToken()).access.token
-    return token
+    try {
+        const token = (JSON.parse(getToken()) && JSON.parse(getToken()).access && JSON.parse(getToken()).access.token) || ""
+        return token
+    }catch (e) {
+        return "";
+    }
 }
 
 

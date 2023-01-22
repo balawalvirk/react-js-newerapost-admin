@@ -1,7 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
     validateAdmin,getUserStats,getAllUsers,getAllOrganizerPartners,getAllEvents,postOrganization,getAllOrganization,blockUnblock,cancelSubscription,
-    blockUnblockPartner,deleteEvent,sendFirebasePushNotifications,postStaticData,getStaticDataByType,getAllEventDetails,postEventDetails
+    blockUnblockPartner,deleteEvent,sendFirebasePushNotifications,postStaticData,getStaticDataByType,getAllEventDetails,
+    postEventDetails,deleteUser,getAllPartners,deletePartnerById,getPartnerDetails,getAllVenues,deleteVenueById
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -480,6 +481,176 @@ export const postEventDetailsSlice = createSlice({
 });
 
 
+export const deleteUserSlice = createSlice({
+    name: 'deleteUserSlice',
+    initialState,
+    reducers: {
+        deleteUserReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deleteUser.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteUser.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deleteUser.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const getAllPartnersSlice = createSlice({
+    name: 'getAllPartnersSlice',
+    initialState,
+    reducers: {
+        getAllPartnersReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updatePartner: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getAllPartners.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllPartners.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllPartners.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const deletePartnerByIdSlice = createSlice({
+    name: 'deletePartnerByIdSlice',
+    initialState,
+    reducers: {
+        deletePartnerByIdReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deletePartnerById.pending]: (state) => {
+            state.loading = true
+        },
+        [deletePartnerById.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deletePartnerById.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const getPartnerDetailsSlice = createSlice({
+    name: 'getPartnerDetailsSlice',
+    initialState,
+    reducers: {
+        getPartnerDetailsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getPartnerDetails.pending]: (state) => {
+            state.loading = true
+        },
+        [getPartnerDetails.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getPartnerDetails.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const getAllVenuesSlice = createSlice({
+    name: 'getAllVenuesSlice',
+    initialState,
+    reducers: {
+        getAllVenuesReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updateVenue: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getAllVenues.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllVenues.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllVenues.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const deleteVenueByIdSlice = createSlice({
+    name: 'deleteVenueByIdSlice',
+    initialState,
+    reducers: {
+        deleteVenueByIdReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deleteVenueById.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteVenueById.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deleteVenueById.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -496,6 +667,12 @@ export const {postStaticDataReset} = postStaticDataSlice.actions;
 export const {getStaticDataByTypeReset} = getStaticDataBySlice.actions;
 export const {getAllEventDetailsReset} = getAllEventDetailsSlice.actions;
 export const {postEventDetailsReset} = postEventDetailsSlice.actions;
+export const {deleteUserReset} = deleteUserSlice.actions;
+export const {getAllPartnersReset,updatePartner} = getAllPartnersSlice.actions;
+export const {deletePartnerByIdReset} = deletePartnerByIdSlice.actions;
+export const {getPartnerDetailsReset} = getPartnerDetailsSlice.actions;
+export const {getAllVenuesReset,updateVenue} = getAllVenuesSlice.actions;
+export const {deleteVenueByIdReset} = deleteVenueByIdSlice.actions;
 
 
 export const validateUserReducer = validateUserSlice.reducer;
@@ -514,3 +691,9 @@ export const postStaticDataReducer = postStaticDataSlice.reducer;
 export const getStaticDataByReducer = getStaticDataBySlice.reducer;
 export const getAllEventDetailsReducer = getAllEventDetailsSlice.reducer;
 export const postEventDetailsReducer = postEventDetailsSlice.reducer;
+export const deleteUserReducer = deleteUserSlice.reducer;
+export const getAllPartnersReducer = getAllPartnersSlice.reducer;
+export const deletePartnerByIdReducer = deletePartnerByIdSlice.reducer;
+export const getPartnerDetailsReducer = getPartnerDetailsSlice.reducer;
+export const getAllVenuesReducer = getAllVenuesSlice.reducer;
+export const deleteVenueByIdReducer = deleteVenueByIdSlice.reducer;

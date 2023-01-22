@@ -103,7 +103,7 @@ const OrganizerPartner = (props) => {
 
 
     let filteredData = [];
-    filteredData = data && data.length > 0 && data.map((d, index) => ({
+    filteredData = data && data.length > 0 && data.filter((d)=>d.partnerId).map((d, index) => ({
         index: index + 1,
         logo: <img style={{width:"48px"}} src={`${baseFileUrl}/${d.logoUrl}`}/>,
         singUpDate: d.partnerId && getFormattedDate(d.partnerId.created_at),

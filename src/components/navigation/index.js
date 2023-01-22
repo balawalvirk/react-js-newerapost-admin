@@ -1,7 +1,7 @@
 import {useLocation, useNavigate, Outlet} from "react-router-dom"
 import {useEffect} from "react";
 import React from "react";
-import {getToken} from "../../utils";
+import {getAccessToken, getToken} from "../../utils";
 
 
 const Navigation = () => {
@@ -9,7 +9,7 @@ const Navigation = () => {
     let navigate = useNavigate();
 
 
-    const token = getToken();
+    const token = getAccessToken();
 
     useEffect(() => {
         if (token && token.length > 0) {

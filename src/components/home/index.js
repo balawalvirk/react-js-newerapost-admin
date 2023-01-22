@@ -24,6 +24,8 @@ import Organization from "../organization";
 import Notification from "../notification";
 import {removeAccessToken} from "../../utils";
 import StaticDataEditor from "../static-data-editor";
+import Partners from "../partners";
+import Venues from "../venues";
 
 const Home = () => {
     const location = useLocation().pathname;
@@ -70,6 +72,18 @@ const Home = () => {
                           onClick={(e)=>handleTab("Users")}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Users"?1:0.9}}>
                         <CustomLabelHeader text={"Users"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Partners")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Partners"?1:0.9}}>
+                        <CustomLabelHeader text={"Partners"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Venues")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Venues"?1:0.9}}>
+                        <CustomLabelHeader text={"Venues"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
@@ -144,6 +158,12 @@ const Home = () => {
                     }
                     {
                         tab==="Users" && <Users/>
+                    }
+                    {
+                        tab==="Partners" && <Partners/>
+                    }
+                    {
+                        tab==="Venues" && <Venues/>
                     }
                     {
                         tab==="Organizers/Partner" && <OrganizerPartner/>
