@@ -118,7 +118,18 @@ const StaticDataEditor = (props) => {
             });
             dispatch(postStaticDataReset())
         }else if(data){
-
+            setConfirmation({
+                show: true,
+                title: "Success",
+                text: "Update successfully",
+                data: {},
+                isUpdate: false,
+                buttonYes:
+                    <Button autoFocus onClick={(e) => {
+                        setConfirmation(initialConfirmation)
+                    }}>ok</Button>,
+                buttonNo:null
+            });
             dispatch(postStaticDataReset())
 
         }
@@ -132,7 +143,10 @@ const StaticDataEditor = (props) => {
 
     const handleEditorSave=(e)=>{
         const data=sanitizeHtml(draftToHtml(convertToRaw(content.getCurrentContent())));
-        dispatch(postStaticData({data:btoa(data),type}));
+        const parsedData=btoa(data.replace(/[\u00A0-\u2666]/g, function(c) {
+            return '&#' + c.charCodeAt(0) + ';';
+        }));
+        dispatch(postStaticData({data:parsedData,type}));
     }
 
 

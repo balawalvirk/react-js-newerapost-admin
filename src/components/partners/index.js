@@ -100,8 +100,7 @@ const Partners = () => {
     },[deleteUserData,deleteUserLoading])
 
 
-    const handleDeletePartner = (e,id) => {
-        e.stopPropagation();
+    const handleDeletePartner = (id) => {
         const selectedUserIndex=data.findIndex((d)=>(d.id).toString()===id.toString())
         let selectedUser=JSON.parse(JSON.stringify(data[selectedUserIndex]));
         selectedUser.subscription=null

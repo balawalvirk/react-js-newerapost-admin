@@ -63,8 +63,15 @@ const OrganizerPartner = (props) => {
             dispatch(blockUnblockPartnerReset())
         }else if(blockUnblockData){
             if(selectedUser){
-                const parsedData=JSON.parse(JSON.stringify(data));
-                parsedData[selectedUser.index]=selectedUser.user;
+                const selectedPartnerId= selectedUser.user && selectedUser.user.partnerId && selectedUser.user.partnerId.id;
+                let parsedData=JSON.parse(JSON.stringify(data));
+                if(selectedPartnerId)
+                    parsedData=parsedData.map((data)=>{
+                        if(data.partnerId && (data.partnerId.id).toString()===selectedPartnerId.toString()){
+                            data.partnerId.block=selectedUser.user.partnerId.block;
+                        }
+                        return data;
+                    })
                 dispatch(updateOrganizerPartner(parsedData));
             }
             dispatch(blockUnblockPartnerReset())
@@ -77,7 +84,7 @@ const OrganizerPartner = (props) => {
 
     const handleBlockUnblock=(id)=>{
 
-        const selectedUserIndex=data.findIndex((d)=>(d.partnerId.id).toString()===id.toString())
+        const selectedUserIndex=data.findIndex((d)=>d.partnerId && (d.partnerId.id).toString()===id.toString())
         let selectedUser=JSON.parse(JSON.stringify(data[selectedUserIndex]));
         selectedUser.partnerId.block=!selectedUser.partnerId.block
 

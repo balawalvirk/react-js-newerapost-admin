@@ -1,8 +1,28 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {
-    validateAdmin,getUserStats,getAllUsers,getAllOrganizerPartners,getAllEvents,postOrganization,getAllOrganization,blockUnblock,cancelSubscription,
-    blockUnblockPartner,deleteEvent,sendFirebasePushNotifications,postStaticData,getStaticDataByType,getAllEventDetails,
-    postEventDetails,deleteUser,getAllPartners,deletePartnerById,getPartnerDetails,getAllVenues,deleteVenueById
+    validateAdmin,
+    getUserStats,
+    getAllUsers,
+    getAllOrganizerPartners,
+    getAllEvents,
+    postOrganization,
+    getAllOrganization,
+    blockUnblock,
+    cancelSubscription,
+    blockUnblockPartner,
+    deleteEvent,
+    sendFirebasePushNotifications,
+    postStaticData,
+    getStaticDataByType,
+    getAllEventDetails,
+    postEventDetails,
+    deleteUser,
+    getAllPartners,
+    deletePartnerById,
+    getPartnerDetails,
+    getAllVenues,
+    deleteVenueById,
+    getAllEventOfReservations
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -651,6 +671,34 @@ export const deleteVenueByIdSlice = createSlice({
 });
 
 
+
+export const getAllEventOfReservationsSlice = createSlice({
+    name: 'getAllEventOfReservationsSlice',
+    initialState,
+    reducers: {
+        getAllEventOfReservationsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getAllEventOfReservations.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllEventOfReservations.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllEventOfReservations.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -673,6 +721,7 @@ export const {deletePartnerByIdReset} = deletePartnerByIdSlice.actions;
 export const {getPartnerDetailsReset} = getPartnerDetailsSlice.actions;
 export const {getAllVenuesReset,updateVenue} = getAllVenuesSlice.actions;
 export const {deleteVenueByIdReset} = deleteVenueByIdSlice.actions;
+export const {getAllEventOfReservationsReset} = getAllEventOfReservationsSlice.actions;
 
 
 export const validateUserReducer = validateUserSlice.reducer;
@@ -697,3 +746,4 @@ export const deletePartnerByIdReducer = deletePartnerByIdSlice.reducer;
 export const getPartnerDetailsReducer = getPartnerDetailsSlice.reducer;
 export const getAllVenuesReducer = getAllVenuesSlice.reducer;
 export const deleteVenueByIdReducer = deleteVenueByIdSlice.reducer;
+export const getAllEventOfReservationsReducer = getAllEventOfReservationsSlice.reducer;

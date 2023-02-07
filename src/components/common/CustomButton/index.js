@@ -133,7 +133,9 @@ const CustomButtonSquareSmall = (props) => {
                     fontWeight:"bold",
                 }}>
                 {props.text}
-            </Typography></Button>)
+            </Typography>
+            {props.children}
+        </Button>)
 }
 
 export {CustomButtonLarge, CustomButtonBlack,CustomButtonSquare,CustomButtonSquareWhite,CustomButtonSquareSmall}

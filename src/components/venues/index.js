@@ -135,7 +135,7 @@ const Venues = () => {
     filteredData = data && data.length > 0 && data.map((d, index) => ({
         index: index + 1,
         name: d.name,
-        bio: `${d.bio}`,
+        bio: `${d.venueBio}`,
         categoryTags: (d.categoryTags).join(","),
         amenities: (JSON.parse(d.amenities)).join(","),
         delete:

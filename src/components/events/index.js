@@ -18,6 +18,8 @@ import ListViewer from "../common/ListViewer";
 import Button from "@mui/material/Button/Button";
 import AddOrganization from "../add-organization";
 import AddEvent from "../add-event";
+import PartnerDetails from "../partner-details";
+import EventDetails from "../event-details";
 
 const initialConfirmation = {
     show: false,
@@ -136,6 +138,30 @@ const Events = () => {
     }
 
 
+    const handleEventDetail = (id) => {
+
+        const selectedEventIndex=data.findIndex((d)=>(d.id).toString()===id.toString())
+        let selectedEvent=JSON.parse(JSON.stringify(data[selectedEventIndex]));
+        selectedEvent.subscription=null
+
+        setConfirmation({
+            show: true,
+            title: `${selectedEvent.title} Details`,
+            text: ``
+            ,
+            data: {},
+            isUpdate: false,
+            buttonYes:
+                <Button autoFocus onClick={(e) => {
+                    setConfirmation(initialConfirmation)
+                }}>ok</Button>,
+            buttonNo:null,
+            children:<EventDetails eventId={id}/>
+        });
+
+    }
+
+
     let filteredData = [];
     filteredData = data && data.length > 0 && data.map((d, index) => ({
         index: index + 1,
@@ -154,6 +180,8 @@ const Events = () => {
             </span>,
         edit: <span onClick={(e) => handleAddOrganization(d.id)}><CustomButtonSquareSmall color={"rgb(13 161 81)"}
                                                                                       text={"Edit"}/></span>,
+        details:
+            <span onClick={(e) => handleEventDetail(d.id)}><CustomButtonSquareSmall text={"Details"} color={"red"}/></span>,
         delete: <span onClick={(e) => handleDeleteEvent(d.id)}><CustomButtonSquareSmall color={"red"} text={"Delete"}/></span>
 
     }))
@@ -176,9 +204,9 @@ const Events = () => {
                 filteredData &&
                 <ListViewer data={filteredData}
                             columns={["No", "Event name", "Venue name", "Type of venue", "Organizer name", "Start date/end date",
-                                "Start time/end time", "Edit", "Delete"]}
+                                "Start time/end time", "Edit","Details", "Delete"]}
                             keys={["index", "eventName", "venueName", "venueType", "organizerName", "startDateTime", "endDateTime",
-                                "edit", "delete",]}
+                                "edit","details", "delete",]}
                             searchField={"eventName"}/>
             }
         </>

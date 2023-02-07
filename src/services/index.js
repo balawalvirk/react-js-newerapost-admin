@@ -273,6 +273,19 @@ const deleteVenueById= createAsyncThunk("deleteVenueById", async (data, {rejectW
     }
 )
 
+
+
+const getAllEventOfReservations= createAsyncThunk("getAllEventReservations", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}reservation/event/${data}/admin`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
 export {
     validateAdmin,
     getUserStats,
@@ -295,5 +308,6 @@ export {
     deletePartnerById,
     getPartnerDetails,
     getAllVenues,
-    deleteVenueById
+    deleteVenueById,
+    getAllEventOfReservations
 }
