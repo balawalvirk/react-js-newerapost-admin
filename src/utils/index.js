@@ -91,3 +91,9 @@ export const getFormattedDate=(date)=>{
 export const getFormattedDateTime=(dateTime)=>{
     return moment(dateTime).format("MM-DD-yyyy")
 }
+
+
+export const isObject = (val)=> {
+    const isObject= (typeof val === 'object');
+    return isObject;
+}

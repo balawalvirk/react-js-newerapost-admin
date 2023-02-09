@@ -11,6 +11,7 @@ import TableBody from "@mui/material/TableBody/TableBody";
 import Pagination from "@mui/material/Pagination/Pagination";
 import {CustomButtonSquareSmall} from "../CustomButton";
 import { CSVLink, CSVDownload } from "react-csv";
+import {isObject} from "../../../utils";
 
 
 const ListViewer = (props) => {
@@ -34,7 +35,7 @@ const ListViewer = (props) => {
             downloadData.push(getRawData(l))
         }
         setCsvData(downloadData);
-    },[count])
+    },[props.count])
 
 
     const onChange = (e, type) => {
@@ -48,13 +49,13 @@ const ListViewer = (props) => {
     const getRowData = (row) => {
         return keys.map((key) =>
             <TableCell style={{wordBreak: "break-word"}}>
-                {row[key]}
+                {(row[key] ) }
             </TableCell>
         )
     }
 
     const getRawData = (row) => {
-        return keys.map((key) => row[key])
+        return keys.map((key) =>isObject(row[key])?"": row[key])
     }
 
 
@@ -91,7 +92,6 @@ const ListViewer = (props) => {
 
 
 
-
     return (
         <Grid item xs={12} style={{width: "100%", height: "100%", zIndex: 0}}
               sx={{marginTop: {xs: "30px", md: "20px"}}}>
@@ -99,7 +99,7 @@ const ListViewer = (props) => {
                     <Grid item xs={12} container style={{marginTop: "15px"}} justifyContent={'center'}>
                         <Grid item xs={11.5} container justifyContent={"flex-end"}>
                             <CustomButtonSquareSmall>
-                                <CSVLink style={{textDecoration:"none",color:"white"}} data={csvData}>Download me</CSVLink>
+                                <CSVLink style={{textDecoration:"none",color:"white"}} data={csvData}>Export csv</CSVLink>
                             </CustomButtonSquareSmall>
                         </Grid>
                         <Grid item xs={11.5}>

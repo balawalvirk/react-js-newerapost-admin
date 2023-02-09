@@ -240,7 +240,7 @@ const Users = () => {
         socialLinks: (d.publicInfo && `${d.publicInfo.instagram || ""} ${d.publicInfo.facebook || ""} ${d.publicInfo.twitter || ""}`),
         zipCode: d.zipCode,
         signUpDate: getFormattedDate(d.createdAt),
-        subscriptionType: d.subscription && d.subscription.name,
+        subscriptionType: (d.subscription && d.subscription.name) || "",
         cancelSubscription: d.subscription &&
             <span onClick={(e) => handleCancelSubscription(d._id)}><CustomButtonSquareSmall text={"Cancel"}/></span>,
         block: d.block ?

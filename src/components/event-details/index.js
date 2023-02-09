@@ -35,12 +35,13 @@ const EventDetails = (props) => {
 
         if (data && data.data) {
             const eventsReservations = data.data;
-            const filteredData = eventsReservations.map((event) => (
+            const filteredData = eventsReservations.map((event,index) => (
                 {
+                    index:index+1,
                     user: (event.user && `${event.user.firstName} ${event.user.lastName}`) || "not found",
                     partner: event.partner && `${event.partner.firstName} ${event.partner.lastName}`,
                     credits: event.credits,
-                    status: event.eventReservation,
+                    status: event.eventReservation==='cancelled'?(event.cancellationStatus || "cancelled"):event.eventReservation,
                     isScanned: event.isScanned?"Yes":"No"
                 }
             ))

@@ -9,7 +9,7 @@ import Button from "@mui/material/Button/Button";
 import {
     deleteEventReset,
     getAllEventDetailsReducer, getAllEventDetailsReset,
-    getAllEventsReset, getStaticDataByTypeReset, postEventDetailsReducer, postEventDetailsReset,
+    getAllEventsReset, getPartnerDetailsReset, getStaticDataByTypeReset, postEventDetailsReducer, postEventDetailsReset,
     postOrganizationReset,
     updateEvent
 } from "../../reducers";
@@ -89,6 +89,11 @@ const AddEvent = (props) => {
             genre: {value: event.country, error: "Genre cant be empty"},
             age: {value:event.tickets[0].age, error: "Age  cant be empty"},
         })
+
+        return function cleanup() {
+            dispatch(getAllEventDetailsReset());
+        };
+
     }, [])
 
 
