@@ -84,7 +84,7 @@ export const removeAccessToken = () => {
 
 
 export const getFormattedDate=(date)=>{
-    return moment(date).format("MM-DD-yyyy")
+    return moment(date).format("MM-DD-yyyy").toString()
 }
 
 

@@ -55,7 +55,7 @@ const ListViewer = (props) => {
     }
 
     const getRawData = (row) => {
-        return keys.map((key) =>isObject(row[key])?"": row[key])
+        return keys.map((key) =>isObject(row[key])?"": ((row[key] && row[key]) || ""))
     }
 
 

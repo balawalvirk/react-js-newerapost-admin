@@ -7,6 +7,8 @@ import {CustomLabelHeader, CustomLabelHeaderLogin, CustomLabelNormal20} from "..
 import moment from "moment";
 import Loader from "../common/Loader";
 import {deletePartnerByIdReset, getAllPartnersReset, getPartnerDetailsReset} from "../../reducers";
+import {CustomButtonSquareSmall} from "../common/CustomButton";
+import {CSVLink} from "react-csv";
 
 
 const PartnerDetails=(props)=>{
@@ -49,10 +51,31 @@ const PartnerDetails=(props)=>{
         </Grid>
     )
 
+    let payoutCsvData=[["Date","Event","Payout"]];
+
+
+    for(let info of reservations){
+        payoutCsvData.push([moment(info.date).format("MMM Do YYYY"),info.title,`$${(info.allReservationCredit).toFixed(2)}`])
+    }
+
+    payoutCsvData.push([],[])
+    payoutCsvData.push(["Beneficiary Name","Routing Number","Account Number","Currency","Tax Number","Type"])
+    payoutCsvData.push([paymentInfo && paymentInfo.beneficiary_name,paymentInfo &&paymentInfo.routing_number,
+        paymentInfo && paymentInfo.account_number,paymentInfo && paymentInfo.currency,paymentInfo && paymentInfo.tax_number
+        ,paymentInfo && paymentInfo.type])
+
+
+
 
     return(
         <Grid container justifyContent={{xs:"center",md:"space-between"}}>
             {(loading) && <Loader/>}
+
+            <Grid item xs={12} container justifyContent={"flex-end"}>
+                <CustomButtonSquareSmall>
+                    <CSVLink style={{textDecoration:"none",color:"white"}} data={payoutCsvData}>Export csv</CSVLink>
+                </CustomButtonSquareSmall>
+            </Grid>
 
             <Grid item xs={11} container direction={"column"}>
                <Grid item>

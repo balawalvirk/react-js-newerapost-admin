@@ -104,6 +104,36 @@ const CustomTextField = (props) => {
 
 
 
+const CustomTextMultipleField = (props) => {
+    const classes = useStyles();
+
+    return (
+        <TextField
+            fullWidth
+            variant={"standard"}
+            onChange={props.onChange}
+            className={classes.root}
+            label={props.label}
+            value={props.value && (props.value).length > 0 ? props.value : ''}
+            type={props.type}
+            helperText={props.helperText}
+            error={props.error}
+            disabled={props.disabled}
+            autoFocus={props.autoFocus}
+            autoComplete="new-password"
+            inputRef={props.params && props.params.inputRef}
+            rows={3}
+            multiline={true}
+            InputProps={{
+                sx:{color:"black"},classes: {underline: classes.underline}, ...props.otherInputProps
+            }}
+
+
+        />
+    )
+}
+
+
 const CustomTextFieldWhite = (props) => {
     const classes = useStyles();
 
@@ -163,4 +193,4 @@ const CustomTextFilled = (props) => {
 }
 
 
-export {CustomTextField,CustomTextFieldWhite,CustomTextFilled};
+export {CustomTextField,CustomTextFieldWhite,CustomTextFilled,CustomTextMultipleField};

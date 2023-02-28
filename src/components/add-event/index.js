@@ -1,4 +1,4 @@
-import {CustomTextField} from "../common/text";
+import {CustomTextField, CustomTextMultipleField} from "../common/text";
 import Grid from "@mui/material/Grid/Grid";
 import React, {useEffect, useState} from "react";
 import {transformValidateObject, validateUserInput} from "../../utils";
@@ -39,6 +39,7 @@ const initialLogin = {
     organizer: {value: "", error: "Organizer cant be empty"},
     genre: {value: "", error: "Venue cant be empty"},
     age: {value: "", error: "Organizer cant be empty"},
+    eventDescription: {value: "", error: "Description cant be empty"},
 
 };
 
@@ -88,6 +89,8 @@ const AddEvent = (props) => {
             organizer: {value: event.organizer.organizerName, error: "Organizer cant be empty"},
             genre: {value: event.country, error: "Genre cant be empty"},
             age: {value:event.tickets[0].age, error: "Age  cant be empty"},
+            eventDescription: {value:event.eventDescription, error: "Description cant be empty"},
+
         })
 
         return function cleanup() {
@@ -193,6 +196,7 @@ const AddEvent = (props) => {
             newEvent.date=(moment(data.city+" "+data.endingTime).format());
             newEvent.country=data.genre;
             newEvent.tickets[0].age=data.age;
+            newEvent.eventDescription=data.eventDescription;
             newEvent.venue=(venuesList.find((venue)=>venue.value===data.venue)).id;
             newEvent.organizer=(organizerList.find((organizer)=>organizer.value===data.organizer)).id
 
@@ -214,6 +218,7 @@ const AddEvent = (props) => {
     const organizerContainer = organizerList.map((item) => <MenuItem value={item.value}>{item.value}</MenuItem>)
     const genreContainer = genreList.map((item) => <MenuItem value={item}>{item}</MenuItem>)
     const ageContainer = ageList.map((item) => <MenuItem value={item}>{item}</MenuItem>)
+
 
 
 
@@ -418,6 +423,18 @@ const AddEvent = (props) => {
                         container={ageContainer}
                         showError={user.age.showError}
                         error={user.age.error}
+                    />
+                </Grid>
+            </Grid>
+            <Grid item xs={12} container justifyContent={"space-between"}>
+                <Grid item xs={12} style={{marginTop: "20px"}} contaier direction={"column"}>
+                    <CustomTextMultipleField label={"Event description"}
+                                     onChange={(e) => onChange(e, 'eventDescription')}
+                                     value={user.eventDescription.value}
+                                     placeholder={""}
+                                     helperText={user.eventDescription.showError ? user.eventDescription.error : ""}
+                                     error={user.eventDescription.showError}
+
                     />
                 </Grid>
             </Grid>

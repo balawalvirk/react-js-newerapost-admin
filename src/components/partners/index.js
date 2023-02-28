@@ -134,7 +134,7 @@ const Partners = () => {
 
         setConfirmation({
             show: true,
-            title: `${selectedUser.firstName} ${selectedUser.lastName} Details`,
+            title: `Partner Details`,
             text: ``
             ,
             data: {},

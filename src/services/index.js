@@ -286,6 +286,22 @@ const getAllEventOfReservations= createAsyncThunk("getAllEventReservations", asy
     }
 )
 
+
+const updatePasswordAdminApi = createAsyncThunk("updatePasswordAdminApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.put(`${baseUl}users/updatePassword/admin`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+
+
 export {
     validateAdmin,
     getUserStats,
@@ -309,5 +325,6 @@ export {
     getPartnerDetails,
     getAllVenues,
     deleteVenueById,
-    getAllEventOfReservations
+    getAllEventOfReservations,
+    updatePasswordAdminApi
 }

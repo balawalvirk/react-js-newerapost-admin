@@ -22,7 +22,8 @@ import {
     getPartnerDetails,
     getAllVenues,
     deleteVenueById,
-    getAllEventOfReservations
+    getAllEventOfReservations,
+    updatePasswordAdminApi
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -699,6 +700,34 @@ export const getAllEventOfReservationsSlice = createSlice({
 });
 
 
+export const updatePasswordAdminSlice = createSlice({
+    name: 'updatePasswordAdminSlice',
+    initialState,
+    reducers: {
+        updatePasswordAdminReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [updatePasswordAdminApi.pending]: (state) => {
+            state.loading = true
+        },
+        [updatePasswordAdminApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [updatePasswordAdminApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -722,6 +751,7 @@ export const {getPartnerDetailsReset} = getPartnerDetailsSlice.actions;
 export const {getAllVenuesReset,updateVenue} = getAllVenuesSlice.actions;
 export const {deleteVenueByIdReset} = deleteVenueByIdSlice.actions;
 export const {getAllEventOfReservationsReset} = getAllEventOfReservationsSlice.actions;
+export const {updatePasswordAdminReset} = updatePasswordAdminSlice.actions;
 
 
 export const validateUserReducer = validateUserSlice.reducer;
@@ -747,3 +777,4 @@ export const getPartnerDetailsReducer = getPartnerDetailsSlice.reducer;
 export const getAllVenuesReducer = getAllVenuesSlice.reducer;
 export const deleteVenueByIdReducer = deleteVenueByIdSlice.reducer;
 export const getAllEventOfReservationsReducer = getAllEventOfReservationsSlice.reducer;
+export const updatePasswordAdminReducer = updatePasswordAdminSlice.reducer;

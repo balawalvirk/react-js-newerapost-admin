@@ -233,7 +233,7 @@ const Users = () => {
     filteredData = data && data.length > 0 && data.map((d, index) => ({
         index: index + 1,
         fullName: `${d.firstName} ${d.lastName}`,
-        phoneNumber: d.phoneNumber,
+        phoneNumber: (d.phoneNumber) && (d.phoneNumber).toString(),
         email: d.email,
         bio: d.publicInfo && d.publicInfo.bio,
         genre: d.genre,

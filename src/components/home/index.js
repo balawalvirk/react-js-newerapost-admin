@@ -26,6 +26,7 @@ import {removeAccessToken} from "../../utils";
 import StaticDataEditor from "../static-data-editor";
 import Partners from "../partners";
 import Venues from "../venues";
+import UpdatePassword from "../update-password";
 
 const Home = () => {
     const location = useLocation().pathname;
@@ -123,11 +124,18 @@ const Home = () => {
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Update Password")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Update Password"?1:0.9}}>
+                        <CustomLabelHeader text={"Update Password"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
                           onClick={handleLogout}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Notifications"?1:0.9}}>
                         <CustomLabelHeader text={"Logout"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
+
                 </Grid>
             </Grid>
             }
@@ -182,6 +190,9 @@ const Home = () => {
                     }
                     {
                         tab==="About us" && <StaticDataEditor type={"about-us"}/>
+                    }
+                    {
+                        tab==="Update Password" && <UpdatePassword/>
                     }
                     {/*<Stats/>*/}
                 </Grid>

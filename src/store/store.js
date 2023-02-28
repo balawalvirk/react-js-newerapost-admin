@@ -5,7 +5,7 @@ import {
     getAllOrganizationReducer,blockUnblockReducer,cancelSubscriptionReducer,blockUnblockPartnerReducer,deleteEventReducer,
     sendFirebasePushNotificationsReducer,postStaticDataReducer,getStaticDataByReducer,getAllEventDetailsReducer,postEventDetailsReducer,
     deleteUserReducer,getAllPartnersReducer,deletePartnerByIdReducer,getPartnerDetailsReducer,getAllVenuesReducer,
-    deleteVenueByIdReducer,getAllEventOfReservationsReducer
+    deleteVenueByIdReducer,getAllEventOfReservationsReducer,updatePasswordAdminReducer
 } from '../reducers';
 import {setupListeners} from '@reduxjs/toolkit/query'
 
@@ -15,7 +15,7 @@ export const store = configureStore({
         getAllOrganizationReducer,blockUnblockReducer,cancelSubscriptionReducer,blockUnblockPartnerReducer,deleteEventReducer,
         sendFirebasePushNotificationsReducer,postStaticDataReducer,getStaticDataByReducer,getAllEventDetailsReducer,
         postEventDetailsReducer,deleteUserReducer,getAllPartnersReducer,deletePartnerByIdReducer,getPartnerDetailsReducer,
-        getAllVenuesReducer,deleteVenueByIdReducer,getAllEventOfReservationsReducer
+        getAllVenuesReducer,deleteVenueByIdReducer,getAllEventOfReservationsReducer,updatePasswordAdminReducer
     },
 });
 setupListeners(store.dispatch)

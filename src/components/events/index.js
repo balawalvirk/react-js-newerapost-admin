@@ -167,17 +167,12 @@ const Events = () => {
         index: index + 1,
         eventName: d.title,
         venueName: d.venue && d.venue.name,
-        venueType: d.venue && d.venue.categoryTags,
+        venueType: d.venue && d.venue.categoryTags.join(","),
         organizerName: d.organizer && d.organizer.organizerName,
-        startDateTime: d.state && d.city &&
-            <span>
-                <span>{`${getFormattedDateTime(d.state)}`}</span><br/>
-                <span>{`${getFormattedDateTime(d.city)}`}</span>
-            </span>,
-        endDateTime: d.startingTime && d.endingTime && <span>
-                <span>{`${(d.startingTime)}`}</span><br/>
-                <span>{`${(d.endingTime)}`}</span>
-            </span>,
+        description: ((d.eventDescription).length>100 && <details><summary>{(d.eventDescription).slice(0,100)}</summary>{d.eventDescription}</details> )
+        || d.eventDescription,
+        startDateTime: d.state && d.city && `${getFormattedDateTime(d.state)} / ${getFormattedDateTime(d.city)}`,
+        endDateTime: d.startingTime && d.endingTime && `${(d.startingTime)} / ${(d.endingTime)}`,
         edit: <span onClick={(e) => handleAddOrganization(d.id)}><CustomButtonSquareSmall color={"rgb(13 161 81)"}
                                                                                       text={"Edit"}/></span>,
         details:
@@ -186,6 +181,7 @@ const Events = () => {
 
     }))
 
+    console.log("data = ",data)
 
     return (
         <>
@@ -203,9 +199,11 @@ const Events = () => {
             {
                 filteredData &&
                 <ListViewer data={filteredData}
-                            columns={["No", "Event name", "Venue name", "Type of venue", "Organizer name", "Start date/end date",
+                            columns={["No", "Event name", "Venue name", "Type of venue", "Organizer name",
+                                "Description","Start date/end date",
                                 "Start time/end time", "Edit","Details", "Delete"]}
-                            keys={["index", "eventName", "venueName", "venueType", "organizerName", "startDateTime", "endDateTime",
+                            keys={["index", "eventName", "venueName", "venueType", "organizerName",
+                                "description","startDateTime", "endDateTime",
                                 "edit","details", "delete",]}
                             searchField={"eventName"}/>
             }
