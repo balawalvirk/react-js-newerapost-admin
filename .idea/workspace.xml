@@ -3,22 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7e5e7472-6039-4463-984f-ed8dbde622d9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" beforeDir="false" afterPath="$PROJECT_DIR$/.firebase/hosting.YnVpbGQ.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/add-event/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/add-event/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/ListViewer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/ListViewer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/common/text/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/common/text/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/event-details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/event-details/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/events/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/events/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/home/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/home/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/organization/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/organization/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partner-details/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partner-details/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/partners/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/partners/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/users/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/users/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/services/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/services/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,7 +29,7 @@
     <session id="1674946277">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="50" />
+          <entry key="project.closed" value="51" />
           <entry key="project.open.time.0" value="13" />
           <entry key="project.open.time.1" value="19" />
           <entry key="project.open.time.13" value="3" />
@@ -471,18 +455,17 @@
       <workItem from="1677485614330" duration="1483000" />
       <workItem from="1677490435729" duration="6586000" />
       <workItem from="1677506761365" duration="13000" />
-      <workItem from="1677581164052" duration="71000" />
+      <workItem from="1677581164052" duration="281000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="176847000" />
+    <option name="totallyTimeSpent" value="177057000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="830" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20134228" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26778522" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -500,7 +483,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32378224" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.32378224" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="TypeScript" order="11" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
