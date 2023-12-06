@@ -5,7 +5,7 @@ import {getAccessToken} from "../utils";
 
 const validateAdmin = createAsyncThunk("validateAdminApi", async (data, {rejectWithValue}) => {
         try {
-            const response = await axios.post(`${baseUl}auth/login/admin`, data);
+            const response = await axios.post(`${baseUl}auth/login`, data);
             return response.data;
         } catch (e) {
             const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
@@ -31,8 +31,8 @@ const getUserStats = createAsyncThunk("getUserStats", async (data, {rejectWithVa
 
 const getAllUsers = createAsyncThunk("getAllUsers", async (data, {rejectWithValue}) => {
         try {
-            const response = await axios.get(`${baseUl}users/all`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
-            return response.data;
+            const response = await axios.get(`${baseUl}user/all`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
         } catch (e) {
             const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
             return rejectWithValue(errorResponse);
@@ -41,6 +41,16 @@ const getAllUsers = createAsyncThunk("getAllUsers", async (data, {rejectWithValu
 )
 
 
+const getAllWaivers = createAsyncThunk("getAllWaivers", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}waiver`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
 
 const getAllOrganizerPartners = createAsyncThunk("getAllOrganizerPartners", async (data, {rejectWithValue}) => {
         try {
@@ -93,7 +103,7 @@ const getAllOrganization = createAsyncThunk("getAllOrganization", async (data, {
 
 const blockUnblock = createAsyncThunk("blockUnblock", async (data, {rejectWithValue}) => {
         try {
-            const response = await axios.post(`${baseUl}users/block`, data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            const response = await axios.put(`${baseUl}user/blocked-status`, data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
             return response.data;
         } catch (e) {
             const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
@@ -105,7 +115,7 @@ const blockUnblock = createAsyncThunk("blockUnblock", async (data, {rejectWithVa
 
 const cancelSubscription = createAsyncThunk("cancelSubscription", async (data, {rejectWithValue}) => {
         try {
-            const response = await axios.post(`${baseUl}stripe/cancel-admin-subscription`, data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            const response = await axios.post(`${baseUl}payment/cancel-subscription`, data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
             return response.data;
         } catch (e) {
             const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
@@ -153,7 +163,7 @@ const sendFirebasePushNotifications = createAsyncThunk("sendFirebasePushNotifica
 
 const postStaticData = createAsyncThunk("postStaticData", async (data, {rejectWithValue}) => {
         try {
-            const response = await axios.post(`${baseUl}users/static-data`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            const response = await axios.post(`${baseUl}static`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
             return response.data;
         } catch (e) {
             const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
@@ -165,8 +175,8 @@ const postStaticData = createAsyncThunk("postStaticData", async (data, {rejectWi
 
 const getStaticDataByType = createAsyncThunk("getStaticDataByType", async (data, {rejectWithValue}) => {
         try {
-            const response = await axios.get(`${baseUl}users/static-data/${data}`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
-            return response.data;
+            const response = await axios.get(`${baseUl}static/type/${data}`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
         } catch (e) {
             const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
             return rejectWithValue(errorResponse);
@@ -300,6 +310,41 @@ const updatePasswordAdminApi = createAsyncThunk("updatePasswordAdminApi", async 
 
 
 
+const getAllExperiences = createAsyncThunk("getAllExperiences", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}experience`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+const getAllGroupsApi = createAsyncThunk("getAllGroups", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}group`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+const getAllGameMastersApi = createAsyncThunk("getAllGameMastersApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}game-master`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
 
 
 export {
@@ -326,5 +371,9 @@ export {
     getAllVenues,
     deleteVenueById,
     getAllEventOfReservations,
-    updatePasswordAdminApi
+    updatePasswordAdminApi,
+    getAllWaivers,
+    getAllExperiences,
+    getAllGroupsApi,
+    getAllGameMastersApi
 }

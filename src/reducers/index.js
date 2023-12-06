@@ -23,7 +23,9 @@ import {
     getAllVenues,
     deleteVenueById,
     getAllEventOfReservations,
-    updatePasswordAdminApi
+    updatePasswordAdminApi, getAllWaivers,
+    getAllExperiences,getAllGroupsApi,
+    getAllGameMastersApi
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -728,6 +730,120 @@ export const updatePasswordAdminSlice = createSlice({
 
 
 
+
+export const getAllWaiverSlice = createSlice({
+    name: 'getAllWaiverSlice',
+    initialState,
+    reducers: {
+        getAllWaiverReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getAllWaivers.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllWaivers.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllWaivers.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const getAllExperiencesSlice = createSlice({
+    name: 'getAllExperiencesSlice',
+    initialState,
+    reducers: {
+        getAllExperiencesReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getAllExperiences.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllExperiences.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllExperiences.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+
+export const getAllGroupsSlice = createSlice({
+    name: 'getAllGroupsSlice',
+    initialState,
+    reducers: {
+        getAllGroupsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getAllGroupsApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllGroupsApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllGroupsApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const getAllGameMastersSlice = createSlice({
+    name: 'getAllGroupsSlice',
+    initialState,
+    reducers: {
+        getAllGameMastersReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getAllGameMastersApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllGameMastersApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllGameMastersApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -752,6 +868,10 @@ export const {getAllVenuesReset,updateVenue} = getAllVenuesSlice.actions;
 export const {deleteVenueByIdReset} = deleteVenueByIdSlice.actions;
 export const {getAllEventOfReservationsReset} = getAllEventOfReservationsSlice.actions;
 export const {updatePasswordAdminReset} = updatePasswordAdminSlice.actions;
+export const {getAllWaiverReset} = getAllWaiverSlice.actions;
+export const {getAllExperiencesReset} = getAllExperiencesSlice.actions;
+export const {getAllGroupsReset} = getAllGroupsSlice.actions;
+export const {getAllGameMastersReset} = getAllGameMastersSlice.actions;
 
 
 export const validateUserReducer = validateUserSlice.reducer;
@@ -778,3 +898,7 @@ export const getAllVenuesReducer = getAllVenuesSlice.reducer;
 export const deleteVenueByIdReducer = deleteVenueByIdSlice.reducer;
 export const getAllEventOfReservationsReducer = getAllEventOfReservationsSlice.reducer;
 export const updatePasswordAdminReducer = updatePasswordAdminSlice.reducer;
+export const getAllWaiverReducer = getAllWaiverSlice.reducer;
+export const getAllExperiencesReducer = getAllExperiencesSlice.reducer;
+export const getAllGroupsReducer = getAllGroupsSlice.reducer;
+export const getAllGameMastersReducer = getAllGameMastersSlice.reducer;

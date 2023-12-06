@@ -69,6 +69,7 @@ const StaticDataEditor = (props) => {
 
 
     const saveStaticDataFromServer=(data)=>{
+        console.log("saveStaticDataFromServer = ",data)
         const sampleMarkup =data;
 
         const blocksFromHTML = convertFromHTML(sampleMarkup);
@@ -142,16 +143,16 @@ const StaticDataEditor = (props) => {
     }
 
     const handleEditorSave=(e)=>{
-        const data=sanitizeHtml(draftToHtml(convertToRaw(content.getCurrentContent())));
-        const parsedData=btoa(data.replace(/[\u00A0-\u2666]/g, function(c) {
-            return '&#' + c.charCodeAt(0) + ';';
-        }));
-        dispatch(postStaticData({data:parsedData,type}));
+        const data=(draftToHtml(convertToRaw(content.getCurrentContent())));
+        // const parsedData=btoa(data.replace(/[\u00A0-\u2666]/g, function(c) {
+        //     return '&#' + c.charCodeAt(0) + ';';
+        // }));
+        dispatch(postStaticData({data:data,type}));
+        console.log(draftToHtml(convertToRaw(content.getCurrentContent())))
     }
 
 
 
-    const TypeContainer = ["User", "Organizers/partners"].map((item) => <MenuItem value={item}>{item}</MenuItem>)
 
 
     return (

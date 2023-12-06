@@ -70,7 +70,8 @@ export const getToken = () => {
 
 export const getAccessToken=()=>{
     try {
-        const token = (JSON.parse(getToken()) && JSON.parse(getToken()).access && JSON.parse(getToken()).access.token) || ""
+        const token = getToken().replaceAll('"','')  || "";
+        console.log(token.replaceAll('"',''))
         return token
     }catch (e) {
         return "";

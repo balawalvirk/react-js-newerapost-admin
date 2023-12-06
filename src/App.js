@@ -9,6 +9,13 @@ import Home from "src/components/home";
 import {store} from "src/store/store";
 import {Provider} from 'react-redux'
 import 'src/assets/css/index.css'
+import Stats from "./components/stats";
+import Users from "./components/users";
+import Waivers from "./components/waivers";
+import Experiences from "./components/experiences";
+import Groups from "./components/groups";
+import GameMasters from "./components/game-masters";
+import StaticDataEditor from "./components/static-data-editor";
 
 const theme = createTheme({
     breakpoints: {
@@ -31,7 +38,16 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Navigation/>}>
                                 <Route path="login" element={<Login/>}/>
-                                <Route path="home" element={<Home/>}/>
+                                <Route path="home" element={<Home/>}>
+                                    <Route path="dashboard" element={<Stats/>}/>
+                                    <Route path="user" element={<Users/>}/>
+                                    <Route path="waiver" element={<Waivers/>}/>
+                                    <Route path="experience" element={<Experiences/>}/>
+                                    <Route path="group" element={<Groups/>}/>
+                                    <Route path="game-master" element={<GameMasters/>}/>
+                                    <Route path="privacy-policy" element={<StaticDataEditor type={"privacy_policy"}/>}/>
+
+                                </Route>
                             </Route>
                         </Routes>
                     </Router>

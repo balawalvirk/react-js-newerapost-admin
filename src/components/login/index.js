@@ -1,8 +1,8 @@
 import {useLocation, useNavigate, Outlet} from "react-router-dom"
 import {useEffect, useState} from "react";
 import React from "react";
-import BackgroundImage from "src/assets/images/hero-background.png";
-import HeaderLogo from "src/assets/images/header-logo.png";
+import BackgroundImage from "src/assets/images/background-waive-pro.jpg";
+import HeaderLogo from "src/assets/images/logo.png";
 import Grid from "@mui/material/Grid/Grid";
 import {CustomLabelHeaderLarge} from "src/components/common/CustomLabel";
 import {CustomLabelHeader, CustomLabelNormal13} from "../common/CustomLabel";
@@ -71,7 +71,11 @@ const Login = () => {
             });
             dispatch(validateUserSliceReset())
         }else if(data){
-            saveToken(JSON.stringify(data.tokens));
+
+            console.log("data = ",data);
+            const user=data.data;
+
+            saveToken(JSON.stringify(user.access_token));
             navigate('/home',{replace: true});
             dispatch(validateUserSliceReset())
 
@@ -115,7 +119,7 @@ const Login = () => {
                         <img src={HeaderLogo} style={{height: "70px"}}/>
                     </Grid>
                     <Grid xs={12} item style={{position: "relative", zIndex: 4}}>
-                        <CustomLabelHeaderLarge text={"Welcome to Music Pass!"} color={"#ffffff"}/>
+                        <CustomLabelHeaderLarge text={"Welcome to Waive Pro!"} color={"#ffffff"}/>
                     </Grid>
                 </Grid>
                 <Grid item style={{width: "100%", height: "100%", position: "absolute", top: 0, zIndex: 0}}>

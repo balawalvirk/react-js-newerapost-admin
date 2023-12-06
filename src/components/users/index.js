@@ -153,7 +153,7 @@ const Users = () => {
 
         const selectedUserIndex=data.findIndex((d)=>(d._id).toString()===id.toString())
         let selectedUser=JSON.parse(JSON.stringify(data[selectedUserIndex]));
-        selectedUser.block=!selectedUser.block
+        selectedUser.blocked=selectedUser.blocked==="block"?"unblock":"block"
 
         setConfirmation({
             show: true,
@@ -164,7 +164,7 @@ const Users = () => {
             isUpdate: false,
             buttonYes:
                 <Button autoFocus onClick={(e) => {
-                    dispatch(blockUnblock({block:selectedUser.block,user:selectedUser._id}));
+                    dispatch(blockUnblock({blocked:selectedUser.blocked,user:selectedUser._id}));
                     setSelectedUser({index:selectedUserIndex,user:selectedUser});
                     setConfirmation(initialConfirmation)
                 }}>ok</Button>,
@@ -179,7 +179,7 @@ const Users = () => {
 
         const selectedUserIndex=data.findIndex((d)=>(d._id).toString()===id.toString())
         let selectedUser=JSON.parse(JSON.stringify(data[selectedUserIndex]));
-        selectedUser.subscription=null
+        selectedUser.subscribed_package=null
 
         setConfirmation({
             show: true,
@@ -190,7 +190,7 @@ const Users = () => {
             isUpdate: false,
             buttonYes:
                 <Button autoFocus onClick={(e) => {
-                    dispatch(cancelSubscription({id:selectedUser._id}));
+                    dispatch(cancelSubscription({user_id:selectedUser._id}));
                     setSelectedUser({index:selectedUserIndex,user:selectedUser});
                     setConfirmation(initialConfirmation)
                 }}>ok</Button>,
@@ -232,25 +232,22 @@ const Users = () => {
     let filteredData = [];
     filteredData = data && data.length > 0 && data.map((d, index) => ({
         index: index + 1,
-        fullName: `${d.firstName} ${d.lastName}`,
-        phoneNumber: (d.phoneNumber) && (d.phoneNumber).toString(),
+        fullName: `${d.first_name} ${d.last_name}`,
+        first_name: `${d.first_name}`,
+        last_name: `${d.first_name}`,
         email: d.email,
-        bio: d.publicInfo && d.publicInfo.bio,
-        genre: d.genre,
-        socialLinks: (d.publicInfo && `${d.publicInfo.instagram || ""} ${d.publicInfo.facebook || ""} ${d.publicInfo.twitter || ""}`),
-        zipCode: d.zipCode,
-        signUpDate: getFormattedDate(d.createdAt),
-        subscriptionType: (d.subscription && d.subscription.name) || "",
-        cancelSubscription: d.subscription &&
+        subscribed_package: (d.subscribed_package && d.subscribed_package.name) || "Not Subscribed",
+        type: (d.type) || "",
+        cancelSubscription: d.subscribed_package && d.subscribed_package.status==="active" &&
             <span onClick={(e) => handleCancelSubscription(d._id)}><CustomButtonSquareSmall text={"Cancel"}/></span>,
-        block: d.block ?
+        block: d.blocked==="block" ?
             <span onClick={(e) => handleBlockUnblock(d._id)}><CustomButtonSquareSmall text={"Unblock"}/></span> :
-            <span onClick={(e) => handleBlockUnblock(d._id)}><CustomButtonSquareSmall color={"red"} text={"Block"}/></span>,
-        delete:
-            <span onClick={(e) => handleDeleteUser(d._id)}><CustomButtonSquareSmall text={"Delete"} color={"red"}/></span>,
+            <span onClick={(e) => handleBlockUnblock(d._id)}><CustomButtonSquareSmall color={"red"} text={"Block"}/></span>
 
     }))
 
+
+    console.log("users = ",data)
 
     return (
         <>
@@ -266,10 +263,8 @@ const Users = () => {
             {
                 filteredData &&
                 <ListViewer data={filteredData}
-                            columns={["No", "User name", "Phone number", "Email", "User bio","Genre", "Social media links",
-                                "Zip code", "Sign-up date", "Subscription type", "Cancel Subscription", "Block/Unblock","Delete"]}
-                            keys={["index", "fullName", "phoneNumber", "email", "bio","genre", "socialLinks", "zipCode", "signUpDate", "subscriptionType",
-                                "cancelSubscription", "block","delete"]}
+                            columns={["No", "First name", "Last name", "Email", "Subscribed Package","Type","Cancel Subscription", "Block/Unblock"]}
+                            keys={["index", "first_name", "last_name", "email", "subscribed_package","type","cancelSubscription","block"]}
                             searchField={"fullName"}/>
             }
         </>
