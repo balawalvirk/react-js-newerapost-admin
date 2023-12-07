@@ -7,7 +7,9 @@ import {
     deleteUserReducer,getAllPartnersReducer,deletePartnerByIdReducer,getPartnerDetailsReducer,getAllVenuesReducer,
     deleteVenueByIdReducer,getAllEventOfReservationsReducer,updatePasswordAdminReducer,getAllWaiverReducer,getAllExperiencesReducer,
     getAllGroupsReducer,
-    getAllGameMastersReducer
+    getAllGameMastersReducer,
+    postSubscriptionPackageReducer,getSubscriptionPackageReducer,updateSubscriptionPackageApiSliceReducer,
+    deletePackageApiSliceReducer
 } from '../reducers';
 import {setupListeners} from '@reduxjs/toolkit/query'
 
@@ -18,7 +20,10 @@ export const store = configureStore({
         sendFirebasePushNotificationsReducer,postStaticDataReducer,getStaticDataByReducer,getAllEventDetailsReducer,
         postEventDetailsReducer,deleteUserReducer,getAllPartnersReducer,deletePartnerByIdReducer,getPartnerDetailsReducer,
         getAllVenuesReducer,deleteVenueByIdReducer,getAllEventOfReservationsReducer,updatePasswordAdminReducer,
-        getAllWaiverReducer,getAllExperiencesReducer,getAllGroupsReducer,getAllGameMastersReducer
+        getAllWaiverReducer,getAllExperiencesReducer,getAllGroupsReducer,getAllGameMastersReducer,
+        postSubscriptionPackageReducer,
+        getSubscriptionPackageReducer,updateSubscriptionPackageApiSliceReducer,
+        deletePackageApiSliceReducer
     },
 });
 setupListeners(store.dispatch)

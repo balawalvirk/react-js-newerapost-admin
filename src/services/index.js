@@ -347,6 +347,58 @@ const getAllGameMastersApi = createAsyncThunk("getAllGameMastersApi", async (dat
 )
 
 
+
+
+const postSubscriptionPackageApi = createAsyncThunk("postSubscriptionPackageApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.post(`${baseUl}package`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+const getSubscriptionPackageApi = createAsyncThunk("getSubscriptionPackageApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}package`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+const updateSubscriptionPackageApi = createAsyncThunk("updateSubscriptionPackageApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.put(`${baseUl}package/${data.packageId}`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+const deletePackageApi = createAsyncThunk("deletePackageApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.delete(`${baseUl}package/${data.packageId}`,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
 export {
     validateAdmin,
     getUserStats,
@@ -375,5 +427,9 @@ export {
     getAllWaivers,
     getAllExperiences,
     getAllGroupsApi,
-    getAllGameMastersApi
+    getAllGameMastersApi,
+    postSubscriptionPackageApi,
+    getSubscriptionPackageApi,
+    updateSubscriptionPackageApi,
+    deletePackageApi
 }

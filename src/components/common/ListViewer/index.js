@@ -101,10 +101,14 @@ const ListViewer = (props) => {
             <>
                 <Grid item xs={12} container style={{marginTop: "15px"}} justifyContent={'center'}>
                     <Grid item xs={11.5} container justifyContent={"flex-end"}>
-                        <CustomButtonSquareSmall>
-                            <CSVLink style={{textDecoration: "none", color: "white"}} data={csvData}>Export
-                                csv</CSVLink>
-                        </CustomButtonSquareSmall>
+                        {
+                            props.hideExport &&
+                            <CustomButtonSquareSmall>
+                                <CSVLink style={{textDecoration: "none", color: "white"}} data={csvData}>Export
+                                    csv</CSVLink>
+                            </CustomButtonSquareSmall>
+                        }
+
                     </Grid>
                     <Grid item xs={11.5}>
                         <SearchWithLabel label={""} user={user} onChange={onChange}

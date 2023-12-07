@@ -64,6 +64,9 @@ const Home = () => {
         }else if(tab==="Privacy Policy"){
             navigate('/home/privacy-policy')
 
+        }else if(tab==="Packages"){
+            navigate('/home/package')
+
         }else{
             navigate('/home/dashboard')
 
@@ -138,6 +141,12 @@ const Home = () => {
                           onClick={(e)=>handleTab("Game Masters")}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Game Masters"?1:0.9}}>
                         <CustomLabelHeader text={"Game Masters"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Packages")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Packages"?1:0.9}}>
+                        <CustomLabelHeader text={"Packages"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}

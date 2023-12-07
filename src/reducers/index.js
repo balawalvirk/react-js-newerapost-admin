@@ -25,7 +25,11 @@ import {
     getAllEventOfReservations,
     updatePasswordAdminApi, getAllWaivers,
     getAllExperiences,getAllGroupsApi,
-    getAllGameMastersApi
+    getAllGameMastersApi,
+    postSubscriptionPackageApi,
+    getSubscriptionPackageApi,
+    updateSubscriptionPackageApi,
+    deletePackageApi
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -844,6 +848,120 @@ export const getAllGameMastersSlice = createSlice({
 });
 
 
+
+
+export const postSubscriptionPackageSlice = createSlice({
+    name: 'postSubscriptionPackageSlice',
+    initialState,
+    reducers: {
+        postSubscriptionPackageReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [postSubscriptionPackageApi.pending]: (state) => {
+            state.loading = true
+        },
+        [postSubscriptionPackageApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [postSubscriptionPackageApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const getSubscriptionPackageSlice = createSlice({
+    name: 'getSubscriptionPackageSlice',
+    initialState,
+    reducers: {
+        getSubscriptionPackageReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getSubscriptionPackageApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getSubscriptionPackageApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getSubscriptionPackageApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const updateSubscriptionPackageApiSlice = createSlice({
+    name: 'updateSubscriptionPackageApiSlice',
+    initialState,
+    reducers: {
+        updateSubscriptionPackageApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [updateSubscriptionPackageApi.pending]: (state) => {
+            state.loading = true
+        },
+        [updateSubscriptionPackageApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [updateSubscriptionPackageApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const deletePackageApiSlice = createSlice({
+    name: 'deletePackageApiSlice',
+    initialState,
+    reducers: {
+        deletePackageApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deletePackageApi.pending]: (state) => {
+            state.loading = true
+        },
+        [deletePackageApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deletePackageApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -872,7 +990,10 @@ export const {getAllWaiverReset} = getAllWaiverSlice.actions;
 export const {getAllExperiencesReset} = getAllExperiencesSlice.actions;
 export const {getAllGroupsReset} = getAllGroupsSlice.actions;
 export const {getAllGameMastersReset} = getAllGameMastersSlice.actions;
-
+export const {postSubscriptionPackageReset} = postSubscriptionPackageSlice.actions;
+export const {getSubscriptionPackageReset} = getSubscriptionPackageSlice.actions;
+export const {updateSubscriptionPackageApiReset} = updateSubscriptionPackageApiSlice.actions;
+export const {deletePackageApiReset} = deletePackageApiSlice.actions;
 
 export const validateUserReducer = validateUserSlice.reducer;
 export const getUserStatsSliceReducer = getUserStatsSlice.reducer;
@@ -902,3 +1023,7 @@ export const getAllWaiverReducer = getAllWaiverSlice.reducer;
 export const getAllExperiencesReducer = getAllExperiencesSlice.reducer;
 export const getAllGroupsReducer = getAllGroupsSlice.reducer;
 export const getAllGameMastersReducer = getAllGameMastersSlice.reducer;
+export const postSubscriptionPackageReducer = postSubscriptionPackageSlice.reducer;
+export const getSubscriptionPackageReducer = getSubscriptionPackageSlice.reducer;
+export const updateSubscriptionPackageApiSliceReducer = updateSubscriptionPackageApiSlice.reducer;
+export const deletePackageApiSliceReducer = deletePackageApiSlice.reducer;

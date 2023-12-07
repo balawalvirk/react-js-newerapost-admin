@@ -16,6 +16,10 @@ import Experiences from "./components/experiences";
 import Groups from "./components/groups";
 import GameMasters from "./components/game-masters";
 import StaticDataEditor from "./components/static-data-editor";
+import Package from "./components/package";
+import ListPackages from "./components/package/ListPackages";
+import AddPackage from "./components/package/Add";
+import UpdatePackage from "./components/package/Update";
 
 const theme = createTheme({
     breakpoints: {
@@ -46,6 +50,11 @@ function App() {
                                     <Route path="group" element={<Groups/>}/>
                                     <Route path="game-master" element={<GameMasters/>}/>
                                     <Route path="privacy-policy" element={<StaticDataEditor type={"privacy_policy"}/>}/>
+                                    <Route path="package" element={<Package/>}>
+                                        <Route path="list" element={<ListPackages/>}/>
+                                        <Route path="add" element={<AddPackage/>}/>
+                                        <Route path="update" element={<UpdatePackage/>}/>
+                                    </Route>
 
                                 </Route>
                             </Route>
