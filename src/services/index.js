@@ -399,6 +399,20 @@ const deletePackageApi = createAsyncThunk("deletePackageApi", async (data, {reje
 )
 
 
+
+const addRewardApi = createAsyncThunk("addReward", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.post(`${baseUl}payment/update-subscription-android`
+                ,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
 export {
     validateAdmin,
     getUserStats,
@@ -431,5 +445,6 @@ export {
     postSubscriptionPackageApi,
     getSubscriptionPackageApi,
     updateSubscriptionPackageApi,
-    deletePackageApi
+    deletePackageApi,
+    addRewardApi
 }

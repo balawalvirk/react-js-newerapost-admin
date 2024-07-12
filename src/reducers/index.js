@@ -29,7 +29,8 @@ import {
     postSubscriptionPackageApi,
     getSubscriptionPackageApi,
     updateSubscriptionPackageApi,
-    deletePackageApi
+    deletePackageApi,
+    addRewardApi
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -960,7 +961,31 @@ export const deletePackageApiSlice = createSlice({
 });
 
 
+export const addRewardSlice = createSlice({
+    name: 'addRewardSlice',
+    initialState,
+    reducers: {
+        addRewardReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [addRewardApi.pending]: (state) => {
+            state.loading = true
+        },
+        [addRewardApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
 
+        },
+        [addRewardApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
 
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
@@ -994,6 +1019,10 @@ export const {postSubscriptionPackageReset} = postSubscriptionPackageSlice.actio
 export const {getSubscriptionPackageReset} = getSubscriptionPackageSlice.actions;
 export const {updateSubscriptionPackageApiReset} = updateSubscriptionPackageApiSlice.actions;
 export const {deletePackageApiReset} = deletePackageApiSlice.actions;
+export const {addRewardReset} = addRewardSlice.actions;
+
+
+
 
 export const validateUserReducer = validateUserSlice.reducer;
 export const getUserStatsSliceReducer = getUserStatsSlice.reducer;
@@ -1027,3 +1056,4 @@ export const postSubscriptionPackageReducer = postSubscriptionPackageSlice.reduc
 export const getSubscriptionPackageReducer = getSubscriptionPackageSlice.reducer;
 export const updateSubscriptionPackageApiSliceReducer = updateSubscriptionPackageApiSlice.reducer;
 export const deletePackageApiSliceReducer = deletePackageApiSlice.reducer;
+export const addRewardSliceReducer = addRewardSlice.reducer;

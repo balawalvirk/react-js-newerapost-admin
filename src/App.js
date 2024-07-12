@@ -20,6 +20,12 @@ import Package from "./components/package";
 import ListPackages from "./components/package/ListPackages";
 import AddPackage from "./components/package/Add";
 import UpdatePackage from "./components/package/Update";
+import Reward from "./components/reward";
+import ListReward from "./components/reward/List";
+import AddReward from "./components/reward/Add";
+
+
+
 
 const theme = createTheme({
     breakpoints: {
@@ -55,6 +61,13 @@ function App() {
                                         <Route path="add" element={<AddPackage/>}/>
                                         <Route path="update" element={<UpdatePackage/>}/>
                                     </Route>
+
+                                    <Route path="reward" element={<Reward/>}>
+                                        <Route path="list" element={<ListReward/>}/>
+                                        <Route path="add" element={<AddReward/>}/>
+                                    </Route>
+
+
 
                                 </Route>
                             </Route>

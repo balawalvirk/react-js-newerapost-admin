@@ -67,6 +67,9 @@ const Home = () => {
         }else if(tab==="Packages"){
             navigate('/home/package')
 
+        }else if(tab==="Reward"){
+            navigate('/home/reward')
+
         }else{
             navigate('/home/dashboard')
 
@@ -147,6 +150,12 @@ const Home = () => {
                           onClick={(e)=>handleTab("Packages")}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Packages"?1:0.9}}>
                         <CustomLabelHeader text={"Packages"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Reward")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Reward"?1:0.9}}>
+                        <CustomLabelHeader text={"Reward"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}

@@ -9,7 +9,7 @@ import {
     getAllGroupsReducer,
     getAllGameMastersReducer,
     postSubscriptionPackageReducer,getSubscriptionPackageReducer,updateSubscriptionPackageApiSliceReducer,
-    deletePackageApiSliceReducer
+    deletePackageApiSliceReducer,addRewardSliceReducer
 } from '../reducers';
 import {setupListeners} from '@reduxjs/toolkit/query'
 
@@ -23,7 +23,7 @@ export const store = configureStore({
         getAllWaiverReducer,getAllExperiencesReducer,getAllGroupsReducer,getAllGameMastersReducer,
         postSubscriptionPackageReducer,
         getSubscriptionPackageReducer,updateSubscriptionPackageApiSliceReducer,
-        deletePackageApiSliceReducer
+        deletePackageApiSliceReducer,addRewardSliceReducer
     },
 });
 setupListeners(store.dispatch)
