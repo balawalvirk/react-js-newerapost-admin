@@ -25,18 +25,18 @@ const Home = () => {
     const location = useLocation().pathname;
     let navigate = useNavigate();
     const [showMenu, setShowMenu] = useState(true);
-    const [tab,setTab]=useState("Dashboard");
+    const [tab,setTab]=useState("Users");
     const theme = useTheme();
 
     useEffect(()=>{
         setShowMenu(isMobile?false:true);
-        navigate('dashboard')
+        navigate('user')
     },[])
 
 
     useEffect(()=>{
         if(location==="/home"){
-            navigate('/home/dashboard')
+            navigate('/home/user')
 
         }
     },[location])
@@ -49,29 +49,23 @@ const Home = () => {
         }else if(tab==="Dashboard"){
             navigate('/home/dashboard')
 
-        }else if(tab==="Waivers"){
-            navigate('/home/waiver')
+        }else if(tab==="Posts"){
+            navigate('/home/post')
 
-        }else if(tab==="Experiences"){
-            navigate('/home/experience')
+        }else if(tab==="Communities"){
+            navigate('/home/community')
 
-        }else if(tab==="Groups"){
-            navigate('/home/group')
-
-        }else if(tab==="Game Masters"){
-            navigate('/home/game-master')
+        }else if(tab==="Campaigns"){
+            navigate('/home/campaign')
 
         }else if(tab==="Privacy Policy"){
             navigate('/home/privacy-policy')
 
-        }else if(tab==="Packages"){
-            navigate('/home/package')
-
-        }else if(tab==="Reward"){
-            navigate('/home/reward')
+        }else if(tab==="Update Password"){
+            navigate('/home/update-password')
 
         }else{
-            navigate('/home/dashboard')
+            navigate('/home/user')
 
         }
 
@@ -105,17 +99,17 @@ const Home = () => {
         }}>
             {showMenu &&
             <Grid item xs={4} md={2}
-                  sx={{zIndex:1,height: "100%", background: "#1e1e2d", position: {xs: "absolute", md: "initial"}}}>
+                  sx={{zIndex:1,height: "100%", background: "#1e1e2d", position: {xs: "fixed", md: "fixed"}}}>
                 <Grid container item xs={12} justifyContent={"center"} style={{marginTop: "20px"}}>
-                    <img src={LogoImage} style={{width: "80%"}}/>
+                    {/*<img src={LogoImage} style={{width: "80%"}}/>*/}
                 </Grid>
                 <Grid container item xs={12} style={{marginTop: "40px", padding: "0px 10px"}}>
-                    <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Dashboard")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Dashboard"?1:0.9}}>
-                        <CustomLabelHeader text={"Dashboard"} color={"white"} fontWeight={"bold"}/>
-                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
-                    </Grid>
+                    {/*<Grid item xs={12} container justifyContent={"flex-start"}*/}
+                          {/*onClick={(e)=>handleTab("Dashboard")}*/}
+                          {/*style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Dashboard"?1:0.9}}>*/}
+                        {/*<CustomLabelHeader text={"Dashboard"} color={"white"} fontWeight={"bold"}/>*/}
+                        {/*<Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>*/}
+                    {/*</Grid>*/}
                     <Grid item xs={12} container justifyContent={"flex-start"}
                           onClick={(e)=>handleTab("Users")}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Users"?1:0.9}}>
@@ -123,45 +117,34 @@ const Home = () => {
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Waivers")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Waivers"?1:0.9}}>
-                        <CustomLabelHeader text={"Waivers"} color={"white"} fontWeight={"bold"}/>
+                          onClick={(e)=>handleTab("Posts")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Posts"?1:0.9}}>
+                        <CustomLabelHeader text={"Posts"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Experiences")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Experiences"?1:0.9}}>
-                        <CustomLabelHeader text={"Experiences"} color={"white"} fontWeight={"bold"}/>
+                          onClick={(e)=>handleTab("Communities")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Communities"?1:0.9}}>
+                        <CustomLabelHeader text={"Communities"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Groups")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Groups"?1:0.9}}>
-                        <CustomLabelHeader text={"Groups"} color={"white"} fontWeight={"bold"}/>
+                          onClick={(e)=>handleTab("Campaigns")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Campaigns"?1:0.9}}>
+                        <CustomLabelHeader text={"Campaigns"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
-                    <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Game Masters")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Game Masters"?1:0.9}}>
-                        <CustomLabelHeader text={"Game Masters"} color={"white"} fontWeight={"bold"}/>
-                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
-                    </Grid>
-                    <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Packages")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Packages"?1:0.9}}>
-                        <CustomLabelHeader text={"Packages"} color={"white"} fontWeight={"bold"}/>
-                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
-                    </Grid>
-                    <Grid item xs={12} container justifyContent={"flex-start"}
-                          onClick={(e)=>handleTab("Reward")}
-                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Reward"?1:0.9}}>
-                        <CustomLabelHeader text={"Reward"} color={"white"} fontWeight={"bold"}/>
-                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
-                    </Grid>
+
                     <Grid item xs={12} container justifyContent={"flex-start"}
                           onClick={(e)=>handleTab("Privacy Policy")}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Privacy Policy"?1:0.9}}>
                         <CustomLabelHeader text={"Privacy Policy"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Update Password")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Update Password"?1:0.9}}>
+                        <CustomLabelHeader text={"Update Password"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
@@ -174,6 +157,7 @@ const Home = () => {
                 </Grid>
             </Grid>
             }
+            {showMenu && <Grid item xs={2}></Grid>}
             <Grid item xs={12} md={showMenu ? 10 : 12}>
                 <Grid item xs={12}>
                     <Paper style={{height: "100%", padding: "20px",zIndex:-1}}>
@@ -198,37 +182,37 @@ const Home = () => {
                 <Grid item xs={12} container justifyContent={"center"}>
                     <Outlet/>
                     {/*{*/}
-                        {/*tab==="Dashboard" && <Stats/>*/}
+                    {/*tab==="Dashboard" && <Stats/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Users" && <Users/>*/}
+                    {/*tab==="Users" && <Users/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Partners" && <Partners/>*/}
+                    {/*tab==="Partners" && <Partners/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Venues" && <Venues/>*/}
+                    {/*tab==="Venues" && <Venues/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Organizers/Partner" && <OrganizerPartner/>*/}
+                    {/*tab==="Organizers/Partner" && <OrganizerPartner/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Events" && <Events/>*/}
+                    {/*tab==="Events" && <Events/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Organization" && <Organization/>*/}
+                    {/*tab==="Organization" && <Organization/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Notifications" && <Notification/>*/}
+                    {/*tab==="Notifications" && <Notification/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Privacy Policy" && <StaticDataEditor type={"privacy-policy"}/>*/}
+                    {/*tab==="Privacy Policy" && <StaticDataEditor type={"privacy-policy"}/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="About us" && <StaticDataEditor type={"about-us"}/>*/}
+                    {/*tab==="About us" && <StaticDataEditor type={"about-us"}/>*/}
                     {/*}*/}
                     {/*{*/}
-                        {/*tab==="Update Password" && <UpdatePassword/>*/}
+                    {/*tab==="Update Password" && <UpdatePassword/>*/}
                     {/*}*/}
                     {/*<Stats/>*/}
                 </Grid>

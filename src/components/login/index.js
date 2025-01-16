@@ -27,7 +27,7 @@ const initialConfirmation = {
 }
 
 const initialLogin = {
-    email: {value: null, error: "Phone cant be empty", showError: false},
+    username: {value: null, error: "Username cant be empty", showError: false},
     password: {value: null, error: "Password cant be empty", showError: false},
 };
 
@@ -59,7 +59,7 @@ const Login = () => {
             setConfirmation({
                 show: true,
                 title: "Error",
-                text: "Invalid email or password"
+                text: "Invalid Username or password"
                 ,
                 data: {},
                 isUpdate: false,
@@ -116,10 +116,10 @@ const Login = () => {
             <Grid item xs={0} md={5.8} container style={{position: "relative"}}>
                 <Grid item xs={12} container style={{padding: "20px"}} alignItems={"space-between"}>
                     <Grid item xs={12} style={{position: "relative", zIndex: 4}}>
-                        <img src={HeaderLogo} style={{height: "70px"}}/>
+                        {/*<img src={HeaderLogo} style={{height: "70px"}}/>*/}
                     </Grid>
                     <Grid xs={12} item style={{position: "relative", zIndex: 4}}>
-                        <CustomLabelHeaderLarge text={"Welcome to Waive Pro!"} color={"#ffffff"}/>
+                        <CustomLabelHeaderLarge text={"Welcome to Newerapost Admin Panel!"} color={"#ffffff"}/>
                     </Grid>
                 </Grid>
                 <Grid item style={{width: "100%", height: "100%", position: "absolute", top: 0, zIndex: 0}}>
@@ -137,12 +137,12 @@ const Login = () => {
                         <CustomLabelNormal13 text={"Enter your email and password"} color={"#b5b5c3"}/>
                     </Grid>
                     <Grid item xs={12} style={{marginTop:"20px"}}>
-                        <CustomTextField label={"Email"}
-                                         onChange={(e) => onChange(e, 'email')}
-                                         error={user.email.showError}
-                                         value={user.email.value}
+                        <CustomTextField label={"Username"}
+                                         onChange={(e) => onChange(e, 'username')}
+                                         error={user.username.showError}
+                                         value={user.username.value}
                                          placeholder={""}
-                                         helperText={user.email.showError ? user.email.error : ""}
+                                         helperText={user.username.showError ? user.username.error : ""}
                         />
                     </Grid>
                     <Grid item xs={12}  style={{marginTop:"20px"}}>

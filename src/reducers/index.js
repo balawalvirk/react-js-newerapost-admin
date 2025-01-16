@@ -30,7 +30,19 @@ import {
     getSubscriptionPackageApi,
     updateSubscriptionPackageApi,
     deletePackageApi,
-    addRewardApi
+    addRewardApi,
+    blockUserApi,
+    getAllPostsApi,
+    getAllCampaignsApi,
+    getAllCommunitiesApi,
+    deletePostApi,
+    deleteCommunityApi,
+    deleteCampaignApi,
+    updateCampaignApi,
+    getPostByIdApi,
+    getPostChatApi,
+    deleteChatMessageApi,
+    getCommunityByIdApi
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -987,6 +999,364 @@ export const addRewardSlice = createSlice({
     },
 });
 
+
+
+
+export const blockUserSlice = createSlice({
+    name: 'addRewardSlice',
+    initialState,
+    reducers: {
+        blockUserReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [blockUserApi.pending]: (state) => {
+            state.loading = true
+        },
+        [blockUserApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [blockUserApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+
+export const getAllPostsSlice = createSlice({
+    name: 'getAllPostsSlice',
+    initialState,
+    reducers: {
+        getAllPostsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updatePosts: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getAllPostsApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllPostsApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllPostsApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const getAllCampaignsSlice = createSlice({
+    name: 'getAllCampaignsSlice',
+    initialState,
+    reducers: {
+        getAllCampaignsReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updateCampaigns: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getAllCampaignsApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllCampaignsApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllCampaignsApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const getAllCommunitiesApiSlice = createSlice({
+    name: 'getAllCommunitiesApiSlice',
+    initialState,
+    reducers: {
+        getAllCommunitiesReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updateCommunities: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getAllCommunitiesApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getAllCommunitiesApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getAllCommunitiesApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const deletePostApiSlice = createSlice({
+    name: 'deletePostApiSlice',
+    initialState,
+    reducers: {
+        deletePostApiSliceReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deletePostApi.pending]: (state) => {
+            state.loading = true
+        },
+        [deletePostApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deletePostApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const deleteCommunityApiSlice = createSlice({
+    name: 'deleteCommunityApiSlice',
+    initialState,
+    reducers: {
+        deleteCommunityApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deleteCommunityApi.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteCommunityApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deleteCommunityApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+export const deleteCampaignApiSlice = createSlice({
+    name: 'deleteCampaignApiSlice',
+    initialState,
+    reducers: {
+        deleteCampaignApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [deleteCampaignApi.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteCampaignApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deleteCampaignApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const updateCampaignApiSlice = createSlice({
+    name: 'updateCampaignApiSlice',
+    initialState,
+    reducers: {
+        updateCampaignApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [updateCampaignApi.pending]: (state) => {
+            state.loading = true
+        },
+        [updateCampaignApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [updateCampaignApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const getPostByIdApiSlice = createSlice({
+    name: 'getPostByIdApiSlice',
+    initialState,
+    reducers: {
+        getPostByIdApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        }
+    },
+    extraReducers: {
+        [getPostByIdApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getPostByIdApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getPostByIdApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const getPostChatApiSlice = createSlice({
+    name: 'getPostChatApiSlice',
+    initialState,
+    reducers: {
+        getPostChatApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updatePostMessages: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getPostChatApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getPostChatApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getPostChatApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const deleteChatMessageApiSlice = createSlice({
+    name: 'deleteChatMessageApiSlice',
+    initialState,
+    reducers: {
+        deleteChatMessageApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+
+    },
+    extraReducers: {
+        [deleteChatMessageApi.pending]: (state) => {
+            state.loading = true
+        },
+        [deleteChatMessageApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [deleteChatMessageApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const getCommunityByIdApiSlice = createSlice({
+    name: 'getCommunityByIdApiSlice',
+    initialState,
+    reducers: {
+        getCommunityByIdApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+
+    },
+    extraReducers: {
+        [getCommunityByIdApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getCommunityByIdApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getCommunityByIdApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -1020,6 +1390,18 @@ export const {getSubscriptionPackageReset} = getSubscriptionPackageSlice.actions
 export const {updateSubscriptionPackageApiReset} = updateSubscriptionPackageApiSlice.actions;
 export const {deletePackageApiReset} = deletePackageApiSlice.actions;
 export const {addRewardReset} = addRewardSlice.actions;
+export const {blockUserReset} = blockUserSlice.actions;
+export const {getAllPostsReset,updatePosts} = getAllPostsSlice.actions;
+export const {getAllCampaignsReset,updateCampaigns} = getAllCampaignsSlice.actions;
+export const {getAllCommunitiesReset,updateCommunities} = getAllCommunitiesApiSlice.actions;
+export const {deletePostApiSliceReset} = deletePostApiSlice.actions;
+export const {deleteCommunityApiReset} = deleteCommunityApiSlice.actions;
+export const {deleteCampaignApiReset} = deleteCampaignApiSlice.actions;
+export const {updateCampaignApiReset} = updateCampaignApiSlice.actions;
+export const {getPostByIdApiReset} = getPostByIdApiSlice.actions;
+export const {getPostChatApiReset,updatePostMessages} = getPostChatApiSlice.actions;
+export const {deleteChatMessageApiReset} = deleteChatMessageApiSlice.actions;
+export const {getCommunityByIdApiReset} = getCommunityByIdApiSlice.actions;
 
 
 
@@ -1057,3 +1439,15 @@ export const getSubscriptionPackageReducer = getSubscriptionPackageSlice.reducer
 export const updateSubscriptionPackageApiSliceReducer = updateSubscriptionPackageApiSlice.reducer;
 export const deletePackageApiSliceReducer = deletePackageApiSlice.reducer;
 export const addRewardSliceReducer = addRewardSlice.reducer;
+export const blockUserSliceReducer = blockUserSlice.reducer;
+export const getAllPostsSliceReducer = getAllPostsSlice.reducer;
+export const getAllCampaignsReducer = getAllCampaignsSlice.reducer;
+export const getAllCommunitiesApiReducer = getAllCommunitiesApiSlice.reducer;
+export const deletePostApiSliceReducer = deletePostApiSlice.reducer;
+export const deleteCommunityApiSliceReducer = deleteCommunityApiSlice.reducer;
+export const deleteCampaignApiSliceReducer = deleteCampaignApiSlice.reducer;
+export const updateCampaignApiSliceReducer = updateCampaignApiSlice.reducer;
+export const getPostByIdApiSliceReducer = getPostByIdApiSlice.reducer;
+export const getPostChatApiSliceReducer = getPostChatApiSlice.reducer;
+export const deleteChatMessageApiSliceReducer = deleteChatMessageApiSlice.reducer;
+export const getCommunityByIdApiSliceReducer = getCommunityByIdApiSlice.reducer;

@@ -23,6 +23,15 @@ import UpdatePackage from "./components/package/Update";
 import Reward from "./components/reward";
 import ListReward from "./components/reward/List";
 import AddReward from "./components/reward/Add";
+import Posts from "./components/posts";
+import Communities from "./components/communities";
+import Campaigns from "./components/campaigns";
+import ListPosts from "./components/posts/list";
+import PostDetails from "./components/posts/details";
+import PostChat from "./components/posts/chat";
+import ListCommunities from "./components/communities/list";
+import CommunityDetails from "./components/communities/details";
+import UpdatePassword from "./components/update-password";
 
 
 
@@ -48,9 +57,22 @@ function App() {
                         <Routes>
                             <Route path="/" element={<Navigation/>}>
                                 <Route path="login" element={<Login/>}/>
+
                                 <Route path="home" element={<Home/>}>
                                     <Route path="dashboard" element={<Stats/>}/>
                                     <Route path="user" element={<Users/>}/>
+                                    <Route path="post" element={<Posts/>}>
+                                        <Route path="list" element={<ListPosts/>}/>
+                                        <Route path=":id/details" element={<PostDetails/>}/>
+                                        <Route path=":id/chat" element={<PostChat/>}/>
+
+                                    </Route>
+                                    <Route path="community" element={<Communities/>}>
+                                        <Route path="list" element={<ListCommunities/>}/>
+                                        <Route path=":id/details" element={<CommunityDetails/>}/>
+                                    </Route>
+                                    <Route path="campaign" element={<Campaigns/>}/>
+
                                     <Route path="waiver" element={<Waivers/>}/>
                                     <Route path="experience" element={<Experiences/>}/>
                                     <Route path="group" element={<Groups/>}/>
@@ -66,8 +88,7 @@ function App() {
                                         <Route path="list" element={<ListReward/>}/>
                                         <Route path="add" element={<AddReward/>}/>
                                     </Route>
-
-
+                                    <Route path="update-password" element={<UpdatePassword/>}/>
 
                                 </Route>
                             </Route>

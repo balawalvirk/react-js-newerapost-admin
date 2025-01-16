@@ -122,7 +122,7 @@ const CustomTextMultipleField = (props) => {
             autoFocus={props.autoFocus}
             autoComplete="new-password"
             inputRef={props.params && props.params.inputRef}
-            rows={3}
+            rows={props.rows || 3}
             multiline={true}
             InputProps={{
                 sx:{color:"black"},classes: {underline: classes.underline}, ...props.otherInputProps

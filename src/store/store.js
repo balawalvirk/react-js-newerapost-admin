@@ -9,7 +9,10 @@ import {
     getAllGroupsReducer,
     getAllGameMastersReducer,
     postSubscriptionPackageReducer,getSubscriptionPackageReducer,updateSubscriptionPackageApiSliceReducer,
-    deletePackageApiSliceReducer,addRewardSliceReducer
+    deletePackageApiSliceReducer,addRewardSliceReducer,blockUserSliceReducer,getAllPostsSliceReducer,
+    getAllCampaignsReducer,getAllCommunitiesApiReducer,deletePostApiSliceReducer,deleteCommunityApiSliceReducer,
+    deleteCampaignApiSliceReducer,updateCampaignApiSliceReducer,getPostByIdApiSliceReducer,getPostChatApiSliceReducer,
+    deleteChatMessageApiSliceReducer,getCommunityByIdApiSliceReducer
 } from '../reducers';
 import {setupListeners} from '@reduxjs/toolkit/query'
 
@@ -23,7 +26,10 @@ export const store = configureStore({
         getAllWaiverReducer,getAllExperiencesReducer,getAllGroupsReducer,getAllGameMastersReducer,
         postSubscriptionPackageReducer,
         getSubscriptionPackageReducer,updateSubscriptionPackageApiSliceReducer,
-        deletePackageApiSliceReducer,addRewardSliceReducer
+        deletePackageApiSliceReducer,addRewardSliceReducer,blockUserSliceReducer,
+        getAllPostsSliceReducer,getAllCampaignsReducer,getAllCommunitiesApiReducer,deletePostApiSliceReducer,
+        deleteCommunityApiSliceReducer,deleteCampaignApiSliceReducer,updateCampaignApiSliceReducer,getPostByIdApiSliceReducer,
+        getPostChatApiSliceReducer,deleteChatMessageApiSliceReducer,getCommunityByIdApiSliceReducer
     },
 });
 setupListeners(store.dispatch)

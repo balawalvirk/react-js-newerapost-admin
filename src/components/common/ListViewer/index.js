@@ -27,7 +27,11 @@ const ListViewer = (props) => {
     const [csvData, setCsvData] = useState([]);
 
     useEffect(() => {
-        setTotal(Math.ceil(data.length / perPage));
+
+
+        const filteredData = data && data.length > 0 ? data.filter((d) => (d[searchField]).toLowerCase().includes(search.toLowerCase())): [];
+
+        setTotal(Math.ceil(filteredData.length / perPage));
         let downloadData = [];
 
         downloadData.push(columns);
@@ -35,7 +39,9 @@ const ListViewer = (props) => {
             downloadData.push(getRawData(l))
         }
         setCsvData(downloadData);
-    }, [props.count])
+    }, [props.count,count])
+
+
 
 
     const onChange = (e, type) => {
@@ -69,7 +75,6 @@ const ListViewer = (props) => {
     };
 
 
-    const list = data && data.length > 0 ? data : [];
 
 
     const ColumnsData = columns.map((column) =>
@@ -85,6 +90,8 @@ const ListViewer = (props) => {
     )
     const search = user.search.value || "";
 
+    const list = data && data.length > 0 ? data.filter((d) => (d[searchField]).toLowerCase().includes(search.toLowerCase())): [];
+
 
     const ContainerData = (list.slice((page - 1) * perPage, page * perPage)).filter((d) => (d[searchField]).toLowerCase().includes(search.toLowerCase())).map((d, index) =>
         <TableRow hover tabIndex={-1} key={index} style={{background: (index + 1) % 2 === 0 ? "#f3f9f9" : "white"}}>
@@ -94,6 +101,8 @@ const ListViewer = (props) => {
         </TableRow>
     );
 
+
+    console.log(list)
 
     return (
         <Grid item xs={12} style={{width: "100%", height: "100%", zIndex: 0}}

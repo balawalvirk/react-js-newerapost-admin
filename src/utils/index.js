@@ -9,7 +9,7 @@ export const validateUserInput = (objectToValidate) => {
         if (!objectToValidate[prop].optional || (prop === "email" && objectToValidate[prop].value && (objectToValidate[prop].value).trim().length > 0)) {
             if ((objectToValidate[prop].value && (objectToValidate[prop].value).trim().length > 0)
                 || (typeof objectToValidate[prop].value === "number" && !isNaN(objectToValidate[prop].value))) {
-                if (prop === "username" || prop === "email") {
+                if ( prop === "email") {
                     if (!objectToValidate[prop].value.toLowerCase().match(/^\S+@\S+\.\S+$/)) {
                         objectToValidate[prop] = {
                             ...objectToValidate[prop],
@@ -90,7 +90,7 @@ export const getFormattedDate=(date)=>{
 
 
 export const getFormattedDateTime=(dateTime)=>{
-    return moment(dateTime).format("MM-DD-yyyy")
+    return moment(dateTime).format("MM-DD-yyyy hh:mm:ss")
 }
 
 
@@ -98,3 +98,12 @@ export const isObject = (val)=> {
     const isObject= (typeof val === 'object');
     return isObject;
 }
+
+
+
+export const isArray = (val)=> {
+    if (val instanceof Array) {
+        return true;
+    } else {
+        return false;
+    }}

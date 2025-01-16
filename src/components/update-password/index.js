@@ -12,7 +12,8 @@ import ResponsiveConfirmationDialog from "../common/ResponsiveConfirmation";
 import {useLocation, useNavigate, Outlet} from "react-router-dom"
 
 const initialPassword = {
-    password: {value: null, error: "Password cant be empty", showError: false},
+    current_password: {value: null, error: "Password cant be empty", showError: false},
+    new_password: {value: null, error: "Password cant be empty", showError: false},
 };
 
 
@@ -115,12 +116,23 @@ const UpdatePassword = () => {
 
             <Grid item xs={6} style={{marginTop:'20px'}}>
                 <Grid item>
-                    <CustomTextField label={"Password"}
-                                     onChange={(e) => onChange(e, 'password')}
-                                     error={user.password.showError}
-                                     value={user.password.value}
+                    <CustomTextField label={"Current Password"}
+                                     onChange={(e) => onChange(e, 'current_password')}
+                                     error={user.current_password.showError}
+                                     value={user.current_password.value}
                                      placeholder={""}
-                                     helperText={user.password.showError ? user.password.error : ""}
+                                     helperText={user.current_password.showError ? user.current_password.error : ""}
+                    />
+                </Grid>
+
+
+                <Grid item>
+                    <CustomTextField label={"New Password"}
+                                     onChange={(e) => onChange(e, 'new_password')}
+                                     error={user.new_password.showError}
+                                     value={user.new_password.value}
+                                     placeholder={""}
+                                     helperText={user.new_password.showError ? user.new_password.error : ""}
                     />
                 </Grid>
 
