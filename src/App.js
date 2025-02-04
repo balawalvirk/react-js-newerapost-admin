@@ -32,6 +32,8 @@ import PostChat from "./components/posts/chat";
 import ListCommunities from "./components/communities/list";
 import CommunityDetails from "./components/communities/details";
 import UpdatePassword from "./components/update-password";
+import PendingPayments from "./components/pending-payments";
+import UpdateRevenue from "./components/update-revenue";
 
 
 
@@ -72,6 +74,8 @@ function App() {
                                         <Route path=":id/details" element={<CommunityDetails/>}/>
                                     </Route>
                                     <Route path="campaign" element={<Campaigns/>}/>
+                                    <Route path="pending-payments" element={<PendingPayments/>}/>
+                                    <Route path="revenue" element={<UpdateRevenue/>}/>
 
                                     <Route path="waiver" element={<Waivers/>}/>
                                     <Route path="experience" element={<Experiences/>}/>

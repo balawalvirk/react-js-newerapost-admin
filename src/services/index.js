@@ -568,6 +568,46 @@ const updatePasswordAdminApi = createAsyncThunk("updatePasswordAdminApi", async 
 )
 
 
+
+
+const getUserPendingPaymentsApi = createAsyncThunk("getUserPendingPaymentsApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.get(`${baseUl}admin/pending-payments`,
+                {headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+const updateUserPaymentApi = createAsyncThunk("updateUserPaymentApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.post(`${baseUl}admin/${data.id}/payment`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
+
+
+const updateRevenueApi = createAsyncThunk("updateRevenueApi", async (data, {rejectWithValue}) => {
+        try {
+            const response = await axios.post(`${baseUl}admin/revenue`,data,{headers: {"Authorization": `Bearer ${getAccessToken()}`}});
+            return response.data;
+        } catch (e) {
+            const errorResponse = e.response && e.response.data && e.response.data.message ? e.response.data.message : "Server error";
+            return rejectWithValue(errorResponse);
+        }
+    }
+)
+
 export {
     validateAdmin,
     getUserStats,
@@ -613,6 +653,8 @@ export {
     getPostByIdApi,
     getPostChatApi,
     deleteChatMessageApi,
-    getCommunityByIdApi
-
+    getCommunityByIdApi,
+    getUserPendingPaymentsApi,
+    updateUserPaymentApi,
+    updateRevenueApi
 }

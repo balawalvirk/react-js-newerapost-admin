@@ -12,7 +12,8 @@ import {
     deletePackageApiSliceReducer,addRewardSliceReducer,blockUserSliceReducer,getAllPostsSliceReducer,
     getAllCampaignsReducer,getAllCommunitiesApiReducer,deletePostApiSliceReducer,deleteCommunityApiSliceReducer,
     deleteCampaignApiSliceReducer,updateCampaignApiSliceReducer,getPostByIdApiSliceReducer,getPostChatApiSliceReducer,
-    deleteChatMessageApiSliceReducer,getCommunityByIdApiSliceReducer
+    deleteChatMessageApiSliceReducer,getCommunityByIdApiSliceReducer,getUserPendingPaymentsApiSliceReducer,updateUserPaymentApiSliceReducer,
+    updateRevenueApiSliceReducer
 } from '../reducers';
 import {setupListeners} from '@reduxjs/toolkit/query'
 
@@ -29,7 +30,8 @@ export const store = configureStore({
         deletePackageApiSliceReducer,addRewardSliceReducer,blockUserSliceReducer,
         getAllPostsSliceReducer,getAllCampaignsReducer,getAllCommunitiesApiReducer,deletePostApiSliceReducer,
         deleteCommunityApiSliceReducer,deleteCampaignApiSliceReducer,updateCampaignApiSliceReducer,getPostByIdApiSliceReducer,
-        getPostChatApiSliceReducer,deleteChatMessageApiSliceReducer,getCommunityByIdApiSliceReducer
+        getPostChatApiSliceReducer,deleteChatMessageApiSliceReducer,getCommunityByIdApiSliceReducer,getUserPendingPaymentsApiSliceReducer,
+        updateUserPaymentApiSliceReducer,updateRevenueApiSliceReducer
     },
 });
 setupListeners(store.dispatch)

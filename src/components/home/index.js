@@ -58,11 +58,17 @@ const Home = () => {
         }else if(tab==="Campaigns"){
             navigate('/home/campaign')
 
+        }else if(tab==="Pending Payments"){
+            navigate('/home/pending-payments')
+
         }else if(tab==="Privacy Policy"){
             navigate('/home/privacy-policy')
 
         }else if(tab==="Update Password"){
             navigate('/home/update-password')
+
+        }else if(tab==="Update Revenue"){
+            navigate('/home/revenue')
 
         }else{
             navigate('/home/user')
@@ -134,7 +140,18 @@ const Home = () => {
                         <CustomLabelHeader text={"Campaigns"} color={"white"} fontWeight={"bold"}/>
                         <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
                     </Grid>
-
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Pending Payments")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Pending Payments"?1:0.9}}>
+                        <CustomLabelHeader text={"Pending Payments"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
+                    <Grid item xs={12} container justifyContent={"flex-start"}
+                          onClick={(e)=>handleTab("Update Revenue")}
+                          style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Update Revenue"?1:0.9}}>
+                        <CustomLabelHeader text={"Update Revenue"} color={"white"} fontWeight={"bold"}/>
+                        <Divider style={{width: "100%", background: "white", marginTop: "10px"}}/>
+                    </Grid>
                     <Grid item xs={12} container justifyContent={"flex-start"}
                           onClick={(e)=>handleTab("Privacy Policy")}
                           style={{marginTop: "10px",cursor:"pointer",opacity:tab==="Privacy Policy"?1:0.9}}>

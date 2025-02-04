@@ -42,7 +42,10 @@ import {
     getPostByIdApi,
     getPostChatApi,
     deleteChatMessageApi,
-    getCommunityByIdApi
+    getCommunityByIdApi,
+    getUserPendingPaymentsApi,
+    updateUserPaymentApi,
+    updateRevenueApi
 } from 'src/services/index';
 import {selectedLanguage} from "src/constants/service";
 
@@ -1357,6 +1360,97 @@ export const getCommunityByIdApiSlice = createSlice({
     },
 });
 
+
+
+export const getUserPendingPaymentsApiSlice = createSlice({
+    name: 'getUserPendingPaymentsApiSlice',
+    initialState,
+    reducers: {
+        getUserPendingPaymentsApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+        updatePendingUserPayment: (state, {payload}) => {
+            state.data = payload;
+        }
+    },
+    extraReducers: {
+        [getUserPendingPaymentsApi.pending]: (state) => {
+            state.loading = true
+        },
+        [getUserPendingPaymentsApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [getUserPendingPaymentsApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+
+export const updateUserPaymentApiSlice = createSlice({
+    name: 'updateUserPaymentApiSlice',
+    initialState,
+    reducers: {
+        updateUserPaymentApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+
+    },
+    extraReducers: {
+        [updateUserPaymentApi.pending]: (state) => {
+            state.loading = true
+        },
+        [updateUserPaymentApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [updateUserPaymentApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
+
+export const updateRevenueApiSlice = createSlice({
+    name: 'updateRevenueApiSlice',
+    initialState,
+    reducers: {
+        updateRevenueApiReset: (state) => {
+            state.loading = false;
+            state.error = null;
+            state.data = null;
+        },
+
+    },
+    extraReducers: {
+        [updateRevenueApi.pending]: (state) => {
+            state.loading = true
+        },
+        [updateRevenueApi.fulfilled]: (state, {payload}) => {
+            state.loading = false
+            state.data = payload
+
+        },
+        [updateRevenueApi.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = action.payload
+        },
+    },
+});
+
+
 export const {validateUserSliceReset} = validateUserSlice.actions;
 export const {getUserStatsReset} = getUserStatsSlice.actions;
 export const {getAllUsersReset,updateUser} = getAllUsersSlice.actions;
@@ -1402,6 +1496,9 @@ export const {getPostByIdApiReset} = getPostByIdApiSlice.actions;
 export const {getPostChatApiReset,updatePostMessages} = getPostChatApiSlice.actions;
 export const {deleteChatMessageApiReset} = deleteChatMessageApiSlice.actions;
 export const {getCommunityByIdApiReset} = getCommunityByIdApiSlice.actions;
+export const {getUserPendingPaymentsApiReset,updatePendingUserPayment} = getUserPendingPaymentsApiSlice.actions;
+export const {updateUserPaymentApiReset} = updateUserPaymentApiSlice.actions;
+export const {updateRevenueApiReset} = updateRevenueApiSlice.actions;
 
 
 
@@ -1451,3 +1548,6 @@ export const getPostByIdApiSliceReducer = getPostByIdApiSlice.reducer;
 export const getPostChatApiSliceReducer = getPostChatApiSlice.reducer;
 export const deleteChatMessageApiSliceReducer = deleteChatMessageApiSlice.reducer;
 export const getCommunityByIdApiSliceReducer = getCommunityByIdApiSlice.reducer;
+export const getUserPendingPaymentsApiSliceReducer = getUserPendingPaymentsApiSlice.reducer;
+export const updateUserPaymentApiSliceReducer = updateUserPaymentApiSlice.reducer;
+export const updateRevenueApiSliceReducer = updateRevenueApiSlice.reducer;
